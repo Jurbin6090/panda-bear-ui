@@ -1,20 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {NgModule}      from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser';
+import {DataTablesModule} from 'angular-datatables';
+import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
+// Root Component
+import {AppComponent} from './app.component';
+
+// Local Components
+import {HeaderComponent, SidebarComponent} from './core-components/core-components';
+import {HttpModule} from '@angular/http';
+// Imported Modules
+import {HomeModule} from '../../../panda-bear-ui/src/home/home.module';
+
+// Route Components
+import {HomeComponent} from '../../../panda-bear-ui/src/home/home.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  }
+];
+
+import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    DataTablesModule,
+    HttpModule,
+    HomeModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SidebarComponent
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

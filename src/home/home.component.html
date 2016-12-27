@@ -1,0 +1,32 @@
+<table datatable>
+  <thead>
+  <tr>
+    <td>Name</td>
+    <td>Gender</td>
+    <td>Job Title</td>
+    <td>Work Email</td>
+    <td>Department</td>
+    <td>Location</td>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <td>Name</td>
+    <td>Gender</td>
+    <td>Job Title</td>
+    <td>Work Email</td>
+    <td>Department</td>
+    <td>Location</td>
+  </tr>
+  </tfoot>
+  <tbody>
+  <tr *ngFor="let employee of employees | async">
+    <td>{{employee.displayName}}</td>
+    <td>{{employee.gender}}</td>
+    <td>{{employee.jobTitle}}</td>
+    <td>{{employee.workEmail}}</td>
+    <td>{{employee.department}}</td>
+    <td>{{employee.location}}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+/*!* You can add global styles to this file, and also import other style files *!*/
+/*@import '../node_modules/@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/
+
+/** {*/
+  /*box-sizing: border-box;*/
+/*}*/
+
+/*html * {*/
+  /*font-family: 'Roboto', sans-serif;*/
+/*}*/
+
+/*table, th, td {*/
+  /*padding: 5px;*/
+  /*border: 1px solid black;*/
+  /*border-collapse: collapse;*/
+/*}*/
+
+/*table {*/
+  /*width: 100%;*/
+/*}*/
+
+/*thead {*/
+  /*white-space: nowrap;*/
+  /*background-color: lightblue;*/
+/*}*/
+
+/*tbody {*/
+  /*background-color: lightgrey;*/
+/*}*/
+
+/*md-dialog-container {*/
+  /*background-color: white;*/
+/*}*/
+
+/*!*table tr:nth-child(even) {*!*/
+/*!*background-color: blue;*!*/
+/*!*}*!*/
+
+/*!*table tr:nth-child(odd) {*!*/
+/*!*background-color: white;*!*/
+/*!*}*!*/
+
+/*md-card {*/
+  /*margin: 10px;*/
+/*}*/
+
+/*button {*/
+  /*padding: 10px;*/
+/*}*/
