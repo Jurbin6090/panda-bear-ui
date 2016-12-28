@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {HomeComponentService} from './home.component.service';
 import 'rxjs/add/operator/map'
 
@@ -12,9 +12,7 @@ export class HomeComponent {
 
   constructor(private homeComponentService:HomeComponentService) {
     this.employees = homeComponentService.getEmployees().map(results => {
-      console.dir(results)
       let response = results.json()
-      console.dir(response)
       return response
     })
   }
