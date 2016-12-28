@@ -1,6 +1,5 @@
 import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
-import {DataTablesModule} from 'angular-datatables';
 import { RouterModule, Routes } from '@angular/router';
 
 // Root Component
@@ -27,7 +26,6 @@ import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 @NgModule({
   imports: [
     BrowserModule,
-    DataTablesModule,
     HttpModule,
     HomeModule,
     RouterModule.forRoot(appRoutes)
