@@ -1,32 +1,49 @@
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Gender</th>
-    <th>Job Title</th>
-    <th>Work Email</th>
-    <th>Department</th>
-    <th>Location</th>
-  </tr>
-  </thead>
-  <tfoot>
-  <tr>
-    <th>Name</th>
-    <th>Gender</th>
-    <th>Job Title</th>
-    <th>Work Email</th>
-    <th>Department</th>
-    <th>Location</th>
-  </tr>
-  </tfoot>
-  <tbody>
-  <tr *ngFor="let employee of employees | async">
-    <td>{{employee.displayName}}</td>
-    <td>{{employee.gender}}</td>
-    <td>{{employee.jobTitle}}</td>
-    <td>{{employee.workEmail}}</td>
-    <td>{{employee.department}}</td>
-    <td>{{employee.location}}</td>
-  </tr>
-  </tbody>
-</table>
+<!--{{employees}}-->
+
+<div class="data-container">
+  <div class="datatable">
+    <p-dataTable [value]="employees" selectionMode="single" [(selection)]="selectedEmployee" (onRowSelect)="onRowSelect($event)" [paginator]="true"
+                 rows="10" [responsive]="true">
+      <header>Employees List</header>
+      <p-column field="displayName" header="Display Name" [sortable]="true"></p-column>
+      <p-column field="firstName" header="First Name" [sortable]="true"></p-column>
+      <p-column field="lastName" header="Last Name" [sortable]="true"></p-column>
+      <p-column field="location" header="Location" [sortable]="true"></p-column>
+      <p-column field="gender" header="Gender" [sortable]="true"></p-column>
+      <footer>
+        <div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add">Add Employee</button></div>
+      </footer>
+    </p-dataTable>
+  </div>
+</div>
+
+<p-dialog header="Employee Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="employee">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="displayName">Display Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="displayName" [(ngModel)]="employee.displayName" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="firstName">First Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="firstName" [(ngModel)]="employee.firstName" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="lastName">Last Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="lastName" [(ngModel)]="employee.lastName" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="location">Location</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="location" [(ngModel)]="employee.location" /></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="gender">Gender</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="gender" [(ngModel)]="employee.gender" /></div>
+    </div>
+  </div>
+  <footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete">Delete</button>
+      <button type="button" pButton icon="fa-check" (click)="save()" label="Save">Save</button>
+    </div>
+  </footer>
+</p-dialog>
