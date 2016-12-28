@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeComponentService} from './home.component.service';
 import 'rxjs/add/operator/map'
+import {SelectItem} from "primeng/primeng";
 
 @Component({
   selector: 'home',
@@ -11,12 +12,26 @@ export class HomeComponent implements OnInit {
   employees
   newEmployee:boolean
   displayDialog:boolean
+  dialogVisible
   employee
+  selectedEmployee
+  genders: SelectItem[]
+  locations: SelectItem[]
 
   constructor(private homeComponentService:HomeComponentService) {
   }
 
   ngOnInit() {
+    this.genders = []
+    this.genders.push({label: '',value: ''})
+    this.genders.push({label: 'Male',value: 'Male'})
+    this.genders.push({label: 'Female',value: 'Female'})
+
+    this.locations = []
+    this.locations.push({label: '',value: ''})
+    this.locations.push({label: 'WUW',value: 'WUW'})
+    this.locations.push({label: 'RH5',value: 'RH5'})
+    this.locations.push({label: 'QWN',value: 'QWN'})
     this.homeComponentService.getEmployees().then(results => {
       let response = results.json()
       this.employees = response
@@ -66,5 +81,15 @@ export class HomeComponent implements OnInit {
 
   findSelectedEmployeeIndex(): number {
     return this.employees.indexOf(this.selectedEmployee);
+  }
+
+  showEmployee(employee) {
+    console.log(employee)
+    this.selectedEmployee = employee;
+    this.dialogVisible = true;
+  }
+
+  editProjects(employee){
+    alert(JSON.stringify(employee))
   }
 }

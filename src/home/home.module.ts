@@ -2,7 +2,7 @@ import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
 import {HomeComponent} from './home.component';
-import {DataTableModule, DialogModule} from 'primeng/primeng';
+import * as PrimeNgModules from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -10,8 +10,9 @@ import {DataTableModule, DialogModule} from 'primeng/primeng';
   ],
   imports: [
     BrowserModule,
-    DataTableModule,
-    DialogModule,
+    ...Object.keys(PrimeNgModules)
+      .map(key => PrimeNgModules[key])
+      .filter(mod => /Module$/.test(mod.name)),
     FormsModule
   ],
   exports: [
