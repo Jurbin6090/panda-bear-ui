@@ -7,6 +7,7 @@ import {ObservableInput} from "rxjs/Observable";
 @Injectable()
 export class EmployeeComponentService {
   deployments
+  employees
 
   constructor(private http:Http) {
     this.deployments = {}

@@ -1,12 +1,10 @@
-import {Component, OnInit, Optional} from '@angular/core';
-import {EmployeeComponentService} from './employee.component.service';
-import 'rxjs/add/operator/map'
-import {RouterLink} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {EmployeeComponentService} from "./employee.component.service";
+import "rxjs/add/operator/map";
 
 @Component({
   selector: 'employee',
-  templateUrl: './employee.component.html',
-  providers: [EmployeeComponentService]
+  templateUrl: './employee.component.html'
 })
 export class EmployeeComponent implements OnInit {
   employees
@@ -20,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedEmployee ={}
+    this.selectedEmployee = {}
     this.selectedEmployee.deployments = {}
     this.display = false
 
@@ -37,7 +35,7 @@ export class EmployeeComponent implements OnInit {
     this.displayDialog = true;
   }
 
-  cloneEmployee(selectedEmp: any): any {
+  cloneEmployee(selectedEmp:any):any {
     let employee = {};
 
     for (let prop in selectedEmp) {
@@ -66,7 +64,7 @@ export class EmployeeComponent implements OnInit {
     alert("Bamboo Update Not Implemented")
   }
 
-  findSelectedEmployeeIndex(): number {
+  findSelectedEmployeeIndex():number {
     return this.employees.indexOf(this.selectedEmployee);
   }
 
@@ -76,7 +74,7 @@ export class EmployeeComponent implements OnInit {
     this.display = true;
   }
 
-  getDeployments(){
+  getDeployments() {
     this.employeeComponentService.getDeployments(this.selectedEmployee.id).then(deployments => {
       this.selectedEmployee.deployments = deployments
     })
