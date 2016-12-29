@@ -1,7 +1,7 @@
 import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
-import {ClientComponent} from './client.component';
+import {DeploymentComponent} from './deployment.component';
 import {
   SharedModule,
   AccordionModule,
@@ -74,7 +74,7 @@ import {
 
 @NgModule({
   declarations: [
-    ClientComponent
+    DeploymentComponent
   ],
   imports: [
     BrowserModule,
@@ -147,9 +147,9 @@ import {
     TriStateCheckboxModule
   ],
   exports: [
-    ClientComponent
+    DeploymentComponent
   ],
-  bootstrap: [ClientComponent]
+  bootstrap: [DeploymentComponent]
 })
-export class ClientModule {
+export class DeploymentModule {
 }
