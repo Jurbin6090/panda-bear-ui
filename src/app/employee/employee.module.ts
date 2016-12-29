@@ -2,6 +2,8 @@ import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
 import {EmployeeComponent} from './employee.component';
+import {RouterModule} from "@angular/router";
+
 import {
   SharedModule,
   AccordionModule,
@@ -71,12 +73,12 @@ import {
   TriStateCheckboxModule
 } from 'primeng/primeng';
 
-
 @NgModule({
   declarations: [
     EmployeeComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     FormsModule,
     SharedModule,

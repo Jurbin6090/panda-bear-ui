@@ -1,6 +1,7 @@
 import {Component, OnInit, Optional} from '@angular/core';
 import {EmployeeComponentService} from './employee.component.service';
 import 'rxjs/add/operator/map'
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'employee',

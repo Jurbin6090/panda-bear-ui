@@ -20,6 +20,7 @@ import {ClientComponent} from './client/client.component';
 import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
+import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
 const appRoutes:Routes = [
   {
@@ -27,7 +28,7 @@ const appRoutes:Routes = [
     component: ClientComponent
   },
   {
-    path: 'deployment',
+    path: 'deployment/:employeeId/:deploymentId',
     component: DeploymentComponent
   },
   {
@@ -39,8 +40,6 @@ const appRoutes:Routes = [
     component: HomeComponent
   }
 ];
-
-import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
 @NgModule({
   imports: [

@@ -104,7 +104,7 @@
 
     <div class="ui-g-8">
       <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
-        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
+        <div><a [routerLink]="['/deployment', selectedEmployee.id , deployment.deploymentId]">{{deployment.clientName}}</a></div>
       </div>
     </div>
 
@@ -112,7 +112,7 @@
 
     <div class="ui-g-8">
       <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
-        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
+        <div><a [routerLink]="['/deployment', selectedEmployee.id , deployment.deploymentId]">{{deployment.clientName}}</a></div>
       </div>
     </div>
   </div>
