@@ -1,6 +1,8 @@
 <div class="data-container">
   <div class="datatable">
-    <p-dataTable [value]="employees" selectionMode="single" [(selection)]="selectedEmployee"
+
+    <!--selectionMode="single" [(selection)]="selectedEmployee"-->
+    <p-dataTable [value]="employees"
                  (onRowSelect)="onRowSelect($event)"
                  [paginator]="true" expandableRows="true" [rows]="50"
                  [responsive]="true" [globalFilter]="gb" #dt>
@@ -54,8 +56,8 @@
       </template>
       <footer>
         <div class="ui-helper-clearfix">
-          <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"
-                  label="Add"></button>
+          <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"-->
+                  <!--label="Add"></button>-->
           <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"
                   style="float:left"></button>
 
@@ -101,16 +103,16 @@
     <div class="ui-g-4 label">Current:</div>
 
     <div class="ui-g-8">
-      <div *ngFor="let currentContract of selectedEmployee.contracts.currentContracts" class="ui-grid-row">
-        <div><a href="/project/{{selectedEmployee.id}}/{{currentContract.id}}">{{currentContract.clientName}}</a></div>
+      <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
+        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
       </div>
     </div>
 
     <div class="ui-g-4 label">Previous:</div>
 
     <div class="ui-g-8">
-      <div *ngFor="let previousContract of selectedEmployee.contracts.previousContracts" class="ui-grid-row">
-        <div><a href="/project/{{selectedEmployee.id}}/{{previousContract.id}}">{{previousContract.clientName}}</a></div>
+      <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
+        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
       </div>
     </div>
   </div>
