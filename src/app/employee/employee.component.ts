@@ -1,13 +1,13 @@
 import {Component, OnInit, Optional} from '@angular/core';
-import {HomeComponentService} from './home.component.service';
+import {EmployeeComponentService} from './employee.component.service';
 import 'rxjs/add/operator/map'
 
 @Component({
-  selector: 'home',
-  templateUrl: './home.component.html',
-  providers: [HomeComponentService]
+  selector: 'employee',
+  templateUrl: './employee.component.html',
+  providers: [EmployeeComponentService]
 })
-export class HomeComponent implements OnInit {
+export class EmployeeComponent implements OnInit {
   employees
   newEmployee:boolean
   displayDialog:boolean
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   selectedEmployee
   display:boolean
 
-  constructor(private homeComponentService:HomeComponentService) {
+  constructor(private employeeComponentService:EmployeeComponentService) {
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.selectedEmployee.deployments = {}
     this.display = false
 
-    this.homeComponentService.getEmployees().then(results => {
+    this.employeeComponentService.getEmployees().then(results => {
       let response = results.json()
 
       this.employees = response
@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
   }
 
   getDeployments(){
-    this.homeComponentService.getDeployments(this.selectedEmployee.id).then(deployments => {
+    this.employeeComponentService.getDeployments(this.selectedEmployee.id).then(deployments => {
       this.selectedEmployee.deployments = deployments
     })
   }

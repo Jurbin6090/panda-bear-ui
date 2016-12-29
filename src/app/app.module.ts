@@ -9,15 +9,19 @@ import {AppComponent} from './app.component';
 import {HeaderComponent, SidebarComponent} from './core-components/core-components';
 import {HttpModule} from '@angular/http';
 // Imported Modules
-import {HomeModule} from './home/home.module';
+import {EmployeeModule} from './employee/employee.module';
 
 // Route Components
-import {HomeComponent} from './home/home.component';
+import {EmployeeComponent} from './employee/employee.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: AppComponent
+  },
+  {
+    path: 'employee',
+    component: EmployeeComponent
   }
 ];
 
@@ -27,7 +31,7 @@ import '@angular/material/core/theming/prebuilt/indigo-pink.css';
   imports: [
     BrowserModule,
     HttpModule,
-    HomeModule,
+    EmployeeModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [

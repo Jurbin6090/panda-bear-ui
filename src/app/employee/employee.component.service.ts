@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Rx";
 import {ObservableInput} from "rxjs/Observable";
 
 @Injectable()
-export class HomeComponentService {
+export class EmployeeComponentService {
   deployments
 
   constructor(private http:Http) {

@@ -1,7 +1,7 @@
 import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
-import {HomeComponent} from './home.component';
+import {EmployeeComponent} from './employee.component';
 import {
   SharedModule,
   AccordionModule,
@@ -74,7 +74,7 @@ import {
 
 @NgModule({
   declarations: [
-    HomeComponent
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -147,9 +147,9 @@ import {
     TriStateCheckboxModule
   ],
   exports: [
-    HomeComponent
+    EmployeeComponent
   ],
-  bootstrap: [HomeComponent]
+  bootstrap: [EmployeeComponent]
 })
-export class HomeModule {
+export class EmployeeModule {
 }
