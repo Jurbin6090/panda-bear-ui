@@ -9,10 +9,10 @@ import {AppComponent} from './app.component';
 import {HeaderComponent, SidebarComponent} from './core-components/core-components';
 import {HttpModule} from '@angular/http';
 // Imported Modules
-import {HomeModule} from '../../../panda-bear-ui/src/home/home.module';
+import {HomeModule} from '../home/home.module';
 
 // Route Components
-import {HomeComponent} from '../../../panda-bear-ui/src/home/home.component';
+import {HomeComponent} from '../home/home.component';
 
 const appRoutes: Routes = [
   {
