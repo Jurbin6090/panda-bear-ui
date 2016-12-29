@@ -5,7 +5,7 @@ import {SelectItem,DialogModule} from "primeng/primeng";
 
 @Component({
   selector: 'home',
-  templateUrl: 'home.component.html',
+  templateUrl: './home.component.html',
   providers: [HomeComponentService]
 })
 export class HomeComponent implements OnInit {
