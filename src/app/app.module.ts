@@ -11,11 +11,13 @@ import {HttpModule} from '@angular/http';
 
 // Imported Modules
 import {ClientModule} from './client/client.module';
+import {DeploymentModule} from './deployment/deployment.module';
 import {EmployeeModule} from './employee/employee.module';
 import {HomeModule} from './home/home.module';
 
 // Route Components
 import {ClientComponent} from './client/client.component';
+import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 
@@ -23,6 +25,10 @@ const appRoutes:Routes = [
   {
     path: 'client',
     component: ClientComponent
+  },
+  {
+    path: 'deployment',
+    component: DeploymentComponent
   },
   {
     path: 'employee',
@@ -41,6 +47,7 @@ import '@angular/material/core/theming/prebuilt/indigo-pink.css';
     BrowserModule,
     HttpModule,
     ClientModule,
+    DeploymentModule,
     EmployeeModule,
     HomeModule,
     RouterModule.forRoot(appRoutes)
