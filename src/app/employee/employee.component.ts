@@ -27,8 +27,6 @@ export class EmployeeComponent implements OnInit {
       let response = results.json()
 
       this.employees = response
-
-      console.dir(this.employees)
     })
   }
 
