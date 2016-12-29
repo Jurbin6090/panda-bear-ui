@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Optional} from '@angular/core';
 import {HomeComponentService} from './home.component.service';
 import 'rxjs/add/operator/map'
-import {SelectItem} from "primeng/primeng";
+import {SelectItem,DialogModule} from "primeng/primeng";
 
 @Component({
   selector: 'home',
@@ -17,11 +17,17 @@ export class HomeComponent implements OnInit {
   selectedEmployee
   genders: SelectItem[]
   locations: SelectItem[]
+  display:boolean
 
   constructor(private homeComponentService:HomeComponentService) {
   }
 
   ngOnInit() {
+    this.selectedEmployee = {}
+    this.selectedEmployee.contracts = {}
+    this.selectedEmployee.contracts.currectContracts = []
+    this.selectedEmployee.contracts.previousContracts = []
+    this.display = false
     this.genders = []
     this.genders.push({label: '',value: ''})
     this.genders.push({label: 'Male',value: 'Male'})
@@ -35,7 +41,20 @@ export class HomeComponent implements OnInit {
     this.homeComponentService.getEmployees().then(results => {
       let response = results.json()
       this.employees = response
+      console.dir(this.employees)
     })
+  }
+
+  getCurrentContract(employee){
+    this.selectedEmployee = employee
+    this.selectedEmployee.contracts = {}
+    this.selectedEmployee.contracts.currentContracts = []
+    this.selectedEmployee.contracts.previousContracts = []
+    this.selectedEmployee.contracts.currentContracts.push({"clientName": "Cooksys.com","id": "1"})
+    this.selectedEmployee.contracts.currentContracts.push({"clientName": "PCF Rewrite","id": "2"})
+    this.selectedEmployee.contracts.previousContracts.push({"clientName": "Fedex","id": "3"})
+    this.selectedEmployee.contracts.previousContracts.push({"clientName": "University of Memphis","id": "4"})
+    this.selectedEmployee.contracts.previousContracts.push({"clientName": "ServiceMaster","id": "5"})
   }
 
   showDialogToAdd() {
@@ -89,7 +108,9 @@ export class HomeComponent implements OnInit {
     this.dialogVisible = true;
   }
 
-  editProjects(employee){
-    alert(JSON.stringify(employee))
+  showDialog(employee) {
+    this.getCurrentContract(employee)
+    this.selectedEmployee = employee
+    this.display = true;
   }
 }

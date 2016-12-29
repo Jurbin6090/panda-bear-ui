@@ -19,7 +19,7 @@
         <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
           <div class="ui-grid-row">
             <div *ngIf="employee.photoUrl" class="ui-grid-col-3" style="text-align:center">
-              <img src="{{employee.photoUrl}}" />
+              <img src="{{employee.photoUrl}}"/>
             </div>
             <div class="ui-grid-col-9">
               <div class="ui-grid ui-grid-responsive ui-grid-pad">
@@ -46,8 +46,8 @@
               </div>
             </div>
             <div>
-              <button type="button" pButton icon="fa-plus" style="float:left" (click)="editProjects(employee)"
-                      label="Edit Projects"></button>
+              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(employee)"
+                      label="Deployment History"></button>
             </div>
           </div>
         </div>
@@ -94,4 +94,24 @@
       <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
     </div>
   </footer>
+</p-dialog>
+
+<p-dialog header="Deployment History" [(visible)]="display">
+  <div class="ui-g">
+    <div class="ui-g-4 label">Current:</div>
+
+    <div class="ui-g-8">
+      <div *ngFor="let currentContract of selectedEmployee.contracts.currentContracts" class="ui-grid-row">
+        <div><a href="/project/{{selectedEmployee.id}}/{{currentContract.id}}">{{currentContract.clientName}}</a></div>
+      </div>
+    </div>
+
+    <div class="ui-g-4 label">Previous:</div>
+
+    <div class="ui-g-8">
+      <div *ngFor="let previousContract of selectedEmployee.contracts.previousContracts" class="ui-grid-row">
+        <div><a href="/project/{{selectedEmployee.id}}/{{previousContract.id}}">{{previousContract.clientName}}</a></div>
+      </div>
+    </div>
+  </div>
 </p-dialog>
