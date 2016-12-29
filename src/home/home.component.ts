@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'home',
-  templateUrl: 'home.component.html',
+  templateUrl: './home.component.html',
   providers: [HomeComponentService]
 })
 export class HomeComponent implements OnInit {
