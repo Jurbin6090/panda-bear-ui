@@ -1,7 +1,6 @@
 import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
-import {DataTablesModule} from 'angular-datatables';
-import { RouterModule, Routes } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 // Root Component
 import {AppComponent} from './app.component';
@@ -9,13 +8,26 @@ import {AppComponent} from './app.component';
 // Local Components
 import {HeaderComponent, SidebarComponent} from './core-components/core-components';
 import {HttpModule} from '@angular/http';
+
 // Imported Modules
-import {HomeModule} from '../../../panda-bear-ui/src/home/home.module';
+import {ClientModule} from './client/client.module';
+import {EmployeeModule} from './employee/employee.module';
+import {HomeModule} from './home/home.module';
 
 // Route Components
-import {HomeComponent} from '../../../panda-bear-ui/src/home/home.component';
+import {ClientComponent} from './client/client.component';
+import {EmployeeComponent} from './employee/employee.component';
+import {HomeComponent} from './home/home.component';
 
-const appRoutes: Routes = [
+const appRoutes:Routes = [
+  {
+    path: 'client',
+    component: ClientComponent
+  },
+  {
+    path: 'employee',
+    component: EmployeeComponent
+  },
   {
     path: '',
     component: HomeComponent
@@ -27,8 +39,9 @@ import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 @NgModule({
   imports: [
     BrowserModule,
-    DataTablesModule,
     HttpModule,
+    ClientModule,
+    EmployeeModule,
     HomeModule,
     RouterModule.forRoot(appRoutes)
   ],

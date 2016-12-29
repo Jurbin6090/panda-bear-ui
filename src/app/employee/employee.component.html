@@ -1,0 +1,119 @@
+<div class="data-container">
+  <div class="datatable">
+
+    <!--selectionMode="single" [(selection)]="selectedEmployee"-->
+    <p-dataTable [value]="employees"
+                 (onRowSelect)="onRowSelect($event)"
+                 [paginator]="true" expandableRows="true" [rows]="50"
+                 [responsive]="true" [globalFilter]="gb" #dt>
+      <header>
+        <h3>Employee List</h3>
+      </header>
+      <p-column expander="true" [style]="{'width':'38px'}"></p-column>
+      <p-column field="firstName" header="First Name" [filter]="true"
+                filterPlaceholder="Search by First Name" filterMatchMode="contains"></p-column>
+      <p-column field="lastName" header="Last Name" [filter]="true"
+                filterPlaceholder="Search by Last Name" filterMatchMode="contains"></p-column>
+      <p-column field="jobTitle" header="Job Title" [filter]="true"
+                filterPlaceholder="Search by Job Title" filterMatchMode="contains"></p-column>
+
+      <template let-employee pTemplate="rowexpansion">
+        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+          <div class="ui-grid-row">
+            <div *ngIf="employee.photoUrl" class="ui-grid-col-3" style="text-align:center">
+              <img src="{{employee.photoUrl}}"/>
+            </div>
+            <div class="ui-grid-col-9">
+              <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2 label">ID:</div>
+                  <div class="ui-grid-col-10">{{employee.id}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2 label">Preferred Name:</div>
+                  <div class="ui-grid-col-10">{{employee.displayName}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2 label">Work Email:</div>
+                  <div class="ui-grid-col-10">{{employee.workEmail}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2 label">Location:</div>
+                  <div class="ui-grid-col-10">{{employee.location}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-2 label">Gender:</div>
+                  <div class="ui-grid-col-10">{{employee.gender}}</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(employee)"
+                      label="Deployment History"></button>
+            </div>
+          </div>
+        </div>
+      </template>
+      <footer>
+        <div class="ui-helper-clearfix">
+          <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"-->
+                  <!--label="Add"></button>-->
+          <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"
+                  style="float:left"></button>
+
+        </div>
+      </footer>
+    </p-dataTable>
+  </div>
+</div>
+
+<p-dialog header="Employee Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="employee">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="displayName">Display Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="displayName" [(ngModel)]="employee.displayName"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="firstName">First Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="firstName" [(ngModel)]="employee.firstName"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="lastName">Last Name</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="lastName" [(ngModel)]="employee.lastName"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="location">Location</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="location" [(ngModel)]="employee.location"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="gender">Gender</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="gender" [(ngModel)]="employee.gender"/></div>
+    </div>
+  </div>
+  <footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </footer>
+</p-dialog>
+
+<p-dialog header="Deployment History" [(visible)]="display">
+  <div class="ui-g">
+    <div class="ui-g-4 label">Current:</div>
+
+    <div class="ui-g-8">
+      <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
+        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
+      </div>
+    </div>
+
+    <div class="ui-g-4 label">Previous:</div>
+
+    <div class="ui-g-8">
+      <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
+        <div><a href="/deployment/{{selectedEmployee.id}}/{{deployment.deploymentId}}">{{deployment.clientName}}</a></div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
