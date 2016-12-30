@@ -5,7 +5,6 @@ import {DeploymentComponentService} from "./deployment.component.service";
 @Component({
   selector: 'app-deployment',
   templateUrl: './deployment.component.html',
-  styleUrls: ['./deployment.component.css'],
   providers: [DeploymentComponentService]
 })
 export class DeploymentComponent implements OnInit {

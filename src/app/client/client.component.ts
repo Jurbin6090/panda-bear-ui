@@ -4,7 +4,6 @@ import {ClientComponentService} from "./service.component.service";
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css'],
   providers: [ClientComponentService]
 })
 export class ClientComponent implements OnInit {
@@ -20,7 +19,17 @@ export class ClientComponent implements OnInit {
 
   getClients() {
     this.clientComponentService.getClients().then(clients => {
-      this.clients = clients
+      this.clients = clients.json().sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      })
     })
   }
 }
