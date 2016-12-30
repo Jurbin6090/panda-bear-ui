@@ -3,20 +3,45 @@ html {
   color: white;
 }
 
+body {
+  background-color: rgb(35, 153, 229);
+  color: white;
+  height: 100%;
+}
+
+ul {
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  /*margin: 0px;*/
+  /*padding: 0px;*/
+}
+
+button {
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
 .content {
-  margin-left: 200px
+  padding: 30px;
+  margin-left: 200px;
+  height: 100%;
 }
 
 /* The side navigation menu */
 .sidenav {
-  margin-top: 133px;
+  margin-left: 8px;
+  margin-top: 132px;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: absolute; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0;
   left: 0;
-  background-color: black; /* Black*/
+  background-color: rgb(35, 153, 229);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -33,29 +58,26 @@ html {
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover, .offcanvas a:focus {
-  color: #f1f1f1;
-}
-
-
+/*.sidenav a:hover, .offcanvas a:focus {*/
+  /*color: #f1f1f1;*/
+/*}*/
 
 /* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+/*.sidenav .closebtn {*/
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*right: 25px;*/
+  /*font-size: 36px;*/
+  /*margin-left: 50px;*/
+/*}*/
 
 .sidenav-open {
   width: 200px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.24);
 }
 
-.sidenav-closed {
-  width: 0px;
-}
+/*.sidenav-closed {*/
+  /*width: 0px;*/
+/*}*/
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {

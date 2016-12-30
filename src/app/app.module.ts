@@ -21,6 +21,7 @@ import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+import {ButtonModule} from 'primeng/primeng'
 
 const appRoutes:Routes = [
   {
@@ -49,6 +50,7 @@ const appRoutes:Routes = [
     DeploymentModule,
     EmployeeModule,
     HomeModule,
+    ButtonModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [

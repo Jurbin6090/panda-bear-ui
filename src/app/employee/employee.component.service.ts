@@ -38,14 +38,6 @@ export class EmployeeComponentService {
         ],
       "previous": [
         {
-          "clientName": "Cooksys.com",
-          "deploymentId": "14"
-        },
-        {
-          "clientName": "PCF Rewrite",
-          "deploymentId": "42"
-        },
-        {
           "clientName": "Fedex",
           "deploymentId": "33"
         },

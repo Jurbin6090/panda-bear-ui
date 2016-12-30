@@ -1,5 +1,50 @@
 <div class="content">
-  <p>
-    Client page
-  </p>
+  <div class="container-fluid" style="display:flex">
+    <div *ngFor="let client of clients" class="ui-grid-row">
+      <div class="column col-md-3">
+        <div style="padding:10px">
+          <label for="id">Client Id</label>
+          <br/>
+          <input id="id" type="text" pInputText [(ngModel)]="client.id"/>
+        </div>
+        <div style="padding:10px">
+          <label for="name">ClientName</label>
+          <br/>
+          <input id="name" type="text" pInputText [(ngModel)]="client.name"/>
+        </div>
+      </div>
+      <div class="column col-md-3">
+        <div style="padding:10px">
+          <label for="street1">Street 1</label>
+          <br/>
+          <input id="street1" type="text" pInputText [(ngModel)]="client.address.street1"/>
+        </div>
+        <div style="padding:10px">
+          <label for="street2">Street 2</label>
+          <br/>
+          <input id="street2" type="text" pInputText [(ngModel)]="client.address.street2"/>
+        </div>
+        <div style="padding:10px">
+          <label for="city">City</label>
+          <br/>
+          <input id="city" type="text" pInputText [(ngModel)]="client.address.city"/>
+        </div>
+        <div style="padding:10px">
+          <label for="state">State</label>
+          <br/>
+          <input id="state" type="text" pInputText [(ngModel)]="client.address.state"/>
+        </div>
+        <div style="padding:10px">
+          <label for="zip">Zip Code</label>
+          <br/>
+          <input id="zip" type="text" pInputText [(ngModel)]="client.address.zip"/>
+        </div>
+        <div style="padding:10px">
+          <label for="country">Country</label>
+          <br/>
+          <input id="country" type="text" pInputText [(ngModel)]="client.address.country"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
