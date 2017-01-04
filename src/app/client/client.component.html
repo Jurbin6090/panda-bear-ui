@@ -1,11 +1,9 @@
 <div class="data-container content">
   <div class="datatable">
-
-
-    <!--selectionMode="single" [(selection)]="selectedEmployee"-->
     <p-dataTable [value]="clients"
                  (onRowSelect)="onRowSelect($event)"
                  [paginator]="true" expandableRows="true" [rows]="10"
+                 emptyMessage="Loading Clients..."
                  [responsive]="true" [globalFilter]="gb" #dt>
       <header>
         <h3>Client List</h3>
@@ -17,45 +15,85 @@
       <template let-client pTemplate="rowexpansion">
         <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
           <div class="ui-grid-row">
-            <div class="ui-grid-col-3" style="text-align:center">
-              <!--<img src="{{employee.photoUrl}}"/>-->
+            <div class="ui-grid-col-4">
+              <div class="column col-md-2">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3 label">ID</div>
+                  <div class="ui-grid-col-6">{{client.id}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3 label">Client Name</div>
+                  <div class="ui-grid-col-6">{{client.name}}</div>
+                </div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Street 1</div>
+                <div class="ui-grid-col-6">{{client.address.street1}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Street 2</div>
+                <div class="ui-grid-col-6">{{client.address.street3}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">City</div>
+                <div class="ui-grid-col-6">{{client.address.city}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">State</div>
+                <div class="ui-grid-col-6">{{client.address.state}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Zip</div>
+                <div class="ui-grid-col-6">{{client.address.zip}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Country</div>
+                <div class="ui-grid-col-6">{{client.address.country}}</div>
+              </div>
             </div>
-            <div class="ui-grid-col-9">
+            <div class="ui-grid-col-3">
               <div class="column col-md-3">
                 <div class="ui-grid-row">
-                  <div class="ui-grid-col-2 label">ID:</div>
-                  <div class="ui-grid-col-10">{{client.id}}</div>
+                  <div class="ui-grid-col-5 label">Partner Name</div>
+                  <div class="ui-grid-col-7">{{client.billing.partner.name}}</div>
                 </div>
                 <div class="ui-grid-row">
-                  <div class="ui-grid-col-2 label">Client Name:</div>
-                  <div class="ui-grid-col-10">{{client.name}}</div>
+                  <div class="ui-grid-col-5 label">Partner %</div>
+                  <div class="ui-grid-col-7">{{client.billing.partner.percentage}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Billing Cycle</div>
+                  <div class="ui-grid-col-7">{{client.billing.cycle}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Payment Terms</div>
+                  <div class="ui-grid-col-7">{{client.billing.paymentTerms}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Agency Fee</div>
+                  <div class="ui-grid-col-7">{{client.billing.agencyFee}}</div>
                 </div>
               </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">Street 1</div>
-                <div class="ui-grid-col-10">{{client.address.street1}}</div>
+            </div>
+            <div class="ui-grid-col-3">
+              <div class="column col-md-3">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Name</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Phone</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.phone}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Email</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.email}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Notes</div>
+                  <div class="ui-grid-col-7">{{client.notes}}</div>
+                </div>
               </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">Street 2</div>
-                <div class="ui-grid-col-10">{{client.address.street2}}</div>
-              </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">City</div>
-                <div class="ui-grid-col-10">{{client.address.city}}</div>
-              </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">State</div>
-                <div class="ui-grid-col-10">{{client.address.state}}</div>
-              </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">Zip</div>
-                <div class="ui-grid-col-10">{{client.address.zip}}</div>
-              </div>
-              <div class="ui-grid-row">
-                <div class="ui-grid-col-2 label">Country</div>
-                <div class="ui-grid-col-10">{{client.address.country}}</div>
-              </div>
-
             </div>
             <div>
               <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(client)"
@@ -68,13 +106,10 @@
       </template>
       <footer>
         <div class="ui-helper-clearfix">
-          <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"-->
-          <!--label="Add"></button>-->
-
           <button type="button" pButton icon="fa-plus" style="float:left; width: 150px;" (click)="showDialog(client)"
                   label="Create Client"></button>
           <button type="button" pButton icon="fa-file-o" style="float:left; width: 150px;" (click)="dt.exportCSV()"
-                  label="CSV" ></button>
+                  label="CSV"></button>
 
         </div>
       </footer>

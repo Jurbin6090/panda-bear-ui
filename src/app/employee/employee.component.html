@@ -4,6 +4,7 @@
     <p-dataTable [value]="employees"
                  (onRowSelect)="onRowSelect($event)"
                  [paginator]="true" expandableRows="true" [rows]="15"
+                 emptyMessage="Loading Employees..."
                  [responsive]="true" [globalFilter]="gb" #dt>
       <header>
         <h3>Employee List</h3>
@@ -47,8 +48,8 @@
               </div>
             </div>
             <div>
-              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(employee)"
-                      label="Deployment History"></button>
+              <button type="button" pButton style="float:left" (click)="showDialog(employee)"
+                      label="Deployments"></button>
             </div>
           </div>
         </div>
@@ -66,30 +67,43 @@
   </div>
 </div>
 
-<p-dialog header="Deployment History" [(visible)]="display">
-  <div class="ui-g">
-    <div *ngIf="selectedEmployee.deployments" class="ui-g-8">
-      <!--<div *ngIf="selectedEmployee.deployments.current.length != 0">-->
-      <div class="ui-g-4 label">Current:</div>
+<p-dialog header="Deployments" [(visible)]="display">
+  <div class="ui-g-12">
+    <div *ngIf="selectedEmployee.deployments" class="ui-g-12">
 
-      <div class="ui-g-8">
-        <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
-          <div><a [routerLink]="['/deployment', selectedEmployee.id , deployment.deploymentId]">{{deployment.clientName}}</a>
-          </div>
-        </div>
-        <!--</div>-->
-      </div>
+      <div *ngIf="isDefined(selectedEmployee.deployments.current)">
+        <div class="ui-grid-row">
+          <div class="ui-g-6 label">Current:</div>
 
-      <!--<div *ngIf="selectedEmployee.deployments.previous.length != 0">-->
-      <div class="ui-g-4 label">Previous:</div>
-
-      <div class="ui-g-8">
-        <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
-          <div><a [routerLink]="['/deployment', selectedEmployee.id , deployment.deploymentId]">{{deployment.clientName}}</a>
+          <div class="ui-g-6">
+            <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
+              <div><a style="white-space: nowrap;"
+                      [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!--</div>-->
+
+      <div *ngIf="isDefined(selectedEmployee.deployments.previous)">
+        <div class="ui-g-6 label">Previous:</div>
+
+        <div class="ui-g-6">
+          <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
+            <div><a style="white-space: nowrap;"
+                    [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <footer>
+    <div class="ui-helper-clearfix">
+      <!--<button type="button" pButton icon="fa-file-o" iconPos="left" label="New Deployment" (click)="newDeployment()"-->
+              <!--style="float:left"></button>-->
+      <button [routerLink]="['/create-deployment', selectedEmployee.id]" pButton icon="fa-plus" type="button" label="New Deployment"></button>
+    </div>
+  </footer>
 </p-dialog>

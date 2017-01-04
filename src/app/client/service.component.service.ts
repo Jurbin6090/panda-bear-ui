@@ -15,34 +15,6 @@ export class ClientComponentService {
   }
 
   getClients():any {
-    // this.clients = [
-    //   {
-    //     "id": 1,
-    //     "name": "Fedex",
-    //     "address": {
-    //       "street1": "12345 Test Road",
-    //       "street2": "Suite #2",
-    //       "city": "Memphis",
-    //       "state": "TN",
-    //       "zip": "38120",
-    //       "country": "US"
-    //     }
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "Amex/GBT",
-    //     "address": {
-    //       "street1": "12345 Test Road",
-    //       "street2": "Suite #2",
-    //       "city": "Memphis",
-    //       "state": "TN",
-    //       "zip": "38120",
-    //       "country": "US"
-    //     }
-    //   }
-    // ]
-    //
-    // return Promise.resolve(this.clients)
     return this.http.get("http://localhost:8085/client/").toPromise()
   }
 }

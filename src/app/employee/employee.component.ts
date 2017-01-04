@@ -76,13 +76,16 @@ export class EmployeeComponent implements OnInit {
 
   getDeploymentsSummary() {
     this.employeeComponentService.getDeploymentsSummary(this.selectedEmployee.id).then(results => {
-      console.dir(results.json())
       let deployments = results.json()
 
-      console.dir(deployments)
       this.selectedEmployee.deployments = deployments
     })
   }
 
-
+  isDefined(value):boolean {
+    if (value != undefined)
+      if (value.length > 0)
+        return true
+    return false
+  }
 }

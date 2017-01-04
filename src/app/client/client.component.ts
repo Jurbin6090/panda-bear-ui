@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClientComponentService} from "./service.component.service";
 
 @Component({
@@ -10,7 +10,15 @@ export class ClientComponent implements OnInit {
   clients
 
   constructor(private clientComponentService:ClientComponentService) {
-    this.clients = [{"address":{}}]
+    this.clients = [
+      {
+        "address": {},
+        "billing": {
+          "partner": {},
+          "contact": {}
+        }
+      }
+    ]
   }
 
   ngOnInit() {
@@ -29,6 +37,22 @@ export class ClientComponent implements OnInit {
 
         // names must be equal
         return 0;
+      })
+    }).then(clients => {
+      this.clients.forEach(client => client.billing =
+      {
+        "partner": {
+          "name": "Test Partner",
+          "percentage": "20"
+        },
+        "contact": {
+          "name": "Brian Goetz",
+          "phone": "(212)-640-2000",
+          "email": "bgotez@aexp.com"
+        },
+        "cycle":"NET 45",
+        "paymentTerms":"Test",
+        "agencyFee":"Test"
       })
     })
   }
