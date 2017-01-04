@@ -24,35 +24,7 @@ export class EmployeeComponentService {
     return this.http.get("http://localhost:8080/employee").toPromise()
   }
 
-  getDeployments(deploymentId):any {
-    this.deployments = {
-      "current":[
-        {
-          "clientName": "Cooksys.com",
-          "deploymentId": "11"
-        },
-        {
-          "clientName": "PCF Rewrite",
-          "deploymentId": "23"
-        }
-        ],
-      "previous": [
-        {
-          "clientName": "Fedex",
-          "deploymentId": "33"
-        },
-        {
-          "clientName": "University of Memphis",
-          "deploymentId": "41"
-        },
-        {
-          "clientName": "ServiceMaster",
-          "deploymentId": "15"
-        }
-        ]
-    }
-
-    return Promise.resolve(this.deployments)
-    // return this.http.get("http://localhost:8080/deployment/employee/" + deploymentId).toPromise()
+  getDeploymentsSummary(employeeId):Promise<Response> {
+    return this.http.get("http://localhost:8088/employee/" + employeeId).toPromise()
   }
 }

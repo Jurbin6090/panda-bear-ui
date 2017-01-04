@@ -70,13 +70,19 @@ export class EmployeeComponent implements OnInit {
 
   showDialog(employee) {
     this.selectedEmployee = employee
-    this.getDeployments()
+    this.getDeploymentsSummary()
     this.display = true;
   }
 
-  getDeployments() {
-    this.employeeComponentService.getDeployments(this.selectedEmployee.id).then(deployments => {
+  getDeploymentsSummary() {
+    this.employeeComponentService.getDeploymentsSummary(this.selectedEmployee.id).then(results => {
+      console.dir(results.json())
+      let deployments = results.json()
+
+      console.dir(deployments)
       this.selectedEmployee.deployments = deployments
     })
   }
+
+
 }
