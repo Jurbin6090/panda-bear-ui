@@ -47,17 +47,32 @@ export class CreateDeploymentComponent implements OnInit {
   }
 
   setClientSelected() {
+    this.isProjectSelected = false
+
+    if (this.clients[0].value === ""){
+      this.clients.splice(0,1)
+    }
+
+    this.createDeploymentComponentService.getProjects(this.deployment.clientId).then(results => {
+      this.projects = []
+
+      this.projects.push({label: "Select a project", value: ""})
+
+      results.json().forEach(project => {
+        this.projects.push({label: project.name, value: project.id})
+      })
+    })
+
     this.isClientSelected = true
-    this.clients.splice(0, 1)
-    this.projects = [{label: "Select a project", value: ""}, {label: "Portal", value: 1}, {
-      label: "Sabre",
-      value: 2
-    }, {label: "Traveler Recognition", value: 3}]
   }
 
   setProjectSelected() {
-    this.projects.splice(0, 1)
-    this.isProjectSelected = true
+    if(this.deployment.projectId !== ""){
+      if (this.projects[0].value === ""){
+        this.projects.splice(0,1)
+      }
+      this.isProjectSelected = true
+    }
   }
 
   createDeployment() {

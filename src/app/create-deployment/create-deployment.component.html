@@ -10,7 +10,7 @@
         <div style="padding:10px">
           <label for="clientId">Client</label>
           <br/>
-          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients"
+          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients" [(ngModel)]="deployment.clientId"
                       (onChange)="setClientSelected()"></p-dropdown>
         </div>
         <div [hidden]="!isClientSelected" style="padding:10px">
