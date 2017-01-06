@@ -13,6 +13,7 @@ import {HttpModule} from '@angular/http';
 import {ClientModule} from './client/client.module';
 import {CreateClientModule} from './create-client/create-client.module';
 import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
+import {CreateProjectModule} from './create-project/create-project.module';
 import {DeploymentModule} from './deployment/deployment.module';
 import {EmployeeModule} from './employee/employee.module';
 import {HomeModule} from './home/home.module';
@@ -22,18 +23,25 @@ import {ButtonModule} from 'primeng/primeng';
 import {ClientComponent} from './client/client.component';
 import {CreateClientComponent} from './create-client/create-client.component';
 import {CreateDeploymentComponent} from './create-deployment/create-deployment.component'
+import {CreateProjectComponent} from './create-project/create-project.component';
 import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
+
 const appRoutes:Routes = [
   {
     path: 'client',
     component: ClientComponent
-  },{
+  },
+  {
     path: 'create-client',
     component: CreateClientComponent
+  },
+  {
+    path: 'create-project',
+    component: CreateProjectComponent
   },
   {
     path: 'deployment/:deploymentId',
@@ -60,6 +68,7 @@ const appRoutes:Routes = [
     ClientModule,
     CreateClientModule,
     CreateDeploymentModule,
+    CreateProjectModule,
     DeploymentModule,
     EmployeeModule,
     HomeModule,

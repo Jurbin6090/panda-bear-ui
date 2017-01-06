@@ -30,11 +30,9 @@ export class CreateDeploymentComponent implements OnInit {
 
     this.createDeploymentComponentService.getClients().then(results => {
       this.clients = []
-
-      let response = results.json()
-
       this.clients.push({label: "Select a client", value: ""})
-      response.forEach(client => {
+
+      results.json().forEach(client => {
         this.clients.push({label: client.name, value: client.id})
       })
     })
