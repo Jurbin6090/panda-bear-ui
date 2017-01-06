@@ -24,6 +24,7 @@ import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+import { CreateClientComponent } from './create-client/create-client.component';
 
 const appRoutes:Routes = [
   {
@@ -63,7 +64,8 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    CreateClientComponent
   ],
   bootstrap: [AppComponent]
 })

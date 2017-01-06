@@ -8,10 +8,21 @@ import {DeploymentComponentService} from "./deployment.component.service";
   providers: [DeploymentComponentService]
 })
 export class DeploymentComponent implements OnInit {
-  deployment
+  full
 
   constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService) {
-    this.deployment = {"address": {}, "dates": {}, "billing": {}}
+    this.full = {
+      "client": {
+        "address": {}
+      },
+      "deployment": {
+        "address": {},
+        "dates": {},
+        "billing": {}
+      },
+      "employee": {},
+      "project": {}
+    }
   }
 
   ngOnInit() {
@@ -22,8 +33,7 @@ export class DeploymentComponent implements OnInit {
 
   getDeployment(deploymentId) {
     this.deploymentComponentService.getDeployment(deploymentId).then(results => {
-      this.deployment = results.json()
-      console.dir(this.deployment)
+      this.full = results.json()
     })
   }
 }
