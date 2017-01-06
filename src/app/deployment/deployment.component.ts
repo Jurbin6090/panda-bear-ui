@@ -21,8 +21,9 @@ export class DeploymentComponent implements OnInit {
   }
 
   getDeployment(deploymentId) {
-    this.deploymentComponentService.getDeployment(deploymentId).then(deployment => {
-      this.deployment = deployment
+    this.deploymentComponentService.getDeployment(deploymentId).then(results => {
+      this.deployment = results.json()
+      console.dir(this.deployment)
     })
   }
 }

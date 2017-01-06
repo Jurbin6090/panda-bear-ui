@@ -70,12 +70,12 @@
     <div *ngIf="selectedEmployee.deployments" class="ui-g-12">
       <div *ngIf="isDefined(selectedEmployee.deployments.current)">
         <div class="ui-grid-row">
-          <div class="ui-g-6 label">Current:</div>
+          <div class="ui-g-3 label">Current:</div>
 
           <div class="ui-g-6">
             <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
               <div><a style="white-space: nowrap;"
-                      [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.name}}</a>
+                      [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}: {{deployment.projectName}}</a>
               </div>
             </div>
           </div>
@@ -83,12 +83,12 @@
       </div>
 
       <div *ngIf="isDefined(selectedEmployee.deployments.previous)">
-        <div class="ui-g-6 label">Previous:</div>
+        <div class="ui-g-3 label">Previous:</div>
 
         <div class="ui-g-6">
           <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
             <div><a style="white-space: nowrap;"
-                    [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.name}}</a>
+                    [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}: {{deployment.projectName}}</a>
             </div>
           </div>
         </div>
