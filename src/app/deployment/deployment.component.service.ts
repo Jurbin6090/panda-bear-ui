@@ -16,14 +16,15 @@ export class DeploymentComponentService {
 
   getDeployment(deploymentId):any {
     this.deployment = {
-      "id": 1,
-      "employeeId": 57,
-      "clientId": 1,
-      "startDate": "2015-12-01",
-      "projectedEndDate": "2016-12-01",
-      "actualEndDate": "2016-07-09",
-      "billingRate": 15,
-      "billingCycle": "Biweekly",
+      "id": "586e61f27962db2b5810684a",
+      "employeeId": 1,
+      "clientId": "586e64d87962db2914736464",
+      "projectId": "123413",
+      "dates": {
+        "startDate": "2015-12-01",
+        "endDate": "2016-07-09",
+        "projectedEndDate": "2016-12-01"
+      },
       "address": {
         "street1": "12345 Test Road",
         "street2": "Suite #2",
@@ -32,10 +33,17 @@ export class DeploymentComponentService {
         "zip": "38120",
         "country": "US"
       },
-      "billable": true,
-      "taxable": true,
-      "mgmtSvcSurcharge": 0,
-      "recruiter": 34
+      "manager": {
+        "name": "Dave Pearson",
+        "email": "dave@company.com",
+        "phone": "555-555-5555"
+      },
+      "billing": {
+        "rate": 20,
+        "cycle": "Biweekly",
+        "taxable": true,
+        "mgmtSvcSurcharge": 0
+      }
     }
 
     return Promise.resolve(this.deployment)

@@ -1,15 +1,80 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {CreateDeploymentComponentService} from "./create-deployment.component.service";
+import {SelectItem} from "primeng/primeng";
+import {isBlockScopedBindingElement} from "tslint/lib/language/utils";
 
 @Component({
   selector: 'app-create-deployment',
   templateUrl: './create-deployment.component.html',
-  styleUrls: ['./create-deployment.component.css']
+  styleUrls: ['./create-deployment.component.css'],
+  providers: [CreateDeploymentComponentService]
 })
 export class CreateDeploymentComponent implements OnInit {
+  deployment
+  clients:SelectItem[]
+  projects:SelectItem[]
+  booleans:SelectItem[]
+  cycles:SelectItem[]
+  isBillable:boolean = false
+  isClientSelected:boolean = false
+  isProjectSelected:boolean = false
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(private activatedRoute:ActivatedRoute, private createDeploymentComponentService:CreateDeploymentComponentService) {
+    this.deployment = {"address": {}, "dates": {}, "billing": {}, "manager": {}}
   }
 
+  ngOnInit() {
+    this.booleans = [{label: "False", value: 0}, {label: "True", value: 1}]
+    this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 0}]
+    this.projects = [{label: "Select a client", value: ""}]
+
+    this.createDeploymentComponentService.getClients().then(results => {
+      this.clients = []
+
+      let response = results.json()
+
+      this.clients.push({label: "Select a client", value: ""})
+      response.forEach(client => {
+        this.clients.push({label: client.name, value: client.id})
+      })
+    })
+
+    this.activatedRoute.params.subscribe(params => {
+      this.deployment.employeeId = params['employeeId']
+    })
+  }
+
+  setClientSelected() {
+    this.isClientSelected = true
+    this.clients.splice(0, 1)
+    this.projects = [{label: "Select a project", value: ""}, {label: "Portal", value: 1}, {
+      label: "Sabre",
+      value: 2
+    }, {label: "Traveler Recognition", value: 3}]
+  }
+
+  setProjectSelected() {
+    this.projects.splice(0, 1)
+    this.isProjectSelected = true
+  }
+
+  createDeployment() {
+    let deployment = Object.assign({}, this.deployment)
+
+    if (!this.isBillable) {
+      deployment.billing = null
+
+    } else if (!deployment.billing.cycle) {
+      deployment.billing.cycle = this.cycles[0].value
+    }
+
+    this.createDeploymentComponentService.createDeployment(deployment).then(result => {
+        console.dir(result.json())
+        alert("Employee Created")
+      }
+    )
+
+  }
 }

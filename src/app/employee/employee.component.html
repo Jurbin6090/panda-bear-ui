@@ -56,8 +56,6 @@
       </template>
       <footer>
         <div class="ui-helper-clearfix">
-          <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"-->
-          <!--label="Add"></button>-->
           <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"
                   style="float:left"></button>
 
@@ -70,7 +68,6 @@
 <p-dialog header="Deployments" [(visible)]="display">
   <div class="ui-g-12">
     <div *ngIf="selectedEmployee.deployments" class="ui-g-12">
-
       <div *ngIf="isDefined(selectedEmployee.deployments.current)">
         <div class="ui-grid-row">
           <div class="ui-g-6 label">Current:</div>
@@ -78,7 +75,7 @@
           <div class="ui-g-6">
             <div *ngFor="let deployment of selectedEmployee.deployments.current" class="ui-grid-row">
               <div><a style="white-space: nowrap;"
-                      [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}</a>
+                      [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientId}}</a>
               </div>
             </div>
           </div>
@@ -91,7 +88,7 @@
         <div class="ui-g-6">
           <div *ngFor="let deployment of selectedEmployee.deployments.previous" class="ui-grid-row">
             <div><a style="white-space: nowrap;"
-                    [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientName}}</a>
+                    [routerLink]="['/deployment', deployment.deploymentId]">{{deployment.clientId}}</a>
             </div>
           </div>
         </div>
@@ -101,8 +98,6 @@
 
   <footer>
     <div class="ui-helper-clearfix">
-      <!--<button type="button" pButton icon="fa-file-o" iconPos="left" label="New Deployment" (click)="newDeployment()"-->
-              <!--style="float:left"></button>-->
       <button [routerLink]="['/create-deployment', selectedEmployee.id]" pButton icon="fa-plus" type="button" label="New Deployment"></button>
     </div>
   </footer>

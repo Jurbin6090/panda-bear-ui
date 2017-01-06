@@ -11,7 +11,7 @@ export class DeploymentComponent implements OnInit {
   deployment
 
   constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService) {
-    this.deployment = {"address": {}}
+    this.deployment = {"address": {}, "dates": {}, "billing": {}}
   }
 
   ngOnInit() {
