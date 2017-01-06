@@ -56,8 +56,8 @@
       </template>
       <footer>
         <div class="ui-helper-clearfix">
-          <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"
-                  style="float:left"></button>
+          <button type="button" pButton icon="fa-file-o" style="float:left; width: 150px;" (click)="dt.exportCSV()"
+                  label="CSV"></button>
 
         </div>
       </footer>
@@ -98,7 +98,7 @@
 
   <footer>
     <div class="ui-helper-clearfix">
-      <button [routerLink]="['/create-deployment', selectedEmployee.id]" pButton icon="fa-plus" type="button" label="New Deployment"></button>
+        <button [routerLink]="['/create-deployment', selectedEmployee.id]" pButton icon="fa-plus" type="button" label="New Deployment"></button>
     </div>
   </footer>
 </p-dialog>

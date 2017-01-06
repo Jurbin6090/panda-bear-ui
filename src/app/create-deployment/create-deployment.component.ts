@@ -1,13 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {CreateDeploymentComponentService} from "./create-deployment.component.service";
 import {SelectItem} from "primeng/primeng";
-import {isBlockScopedBindingElement} from "tslint/lib/language/utils";
 
 @Component({
   selector: 'app-create-deployment',
   templateUrl: './create-deployment.component.html',
-  styleUrls: ['./create-deployment.component.css'],
   providers: [CreateDeploymentComponentService]
 })
 export class CreateDeploymentComponent implements OnInit {
@@ -49,8 +47,8 @@ export class CreateDeploymentComponent implements OnInit {
   setClientSelected() {
     this.isProjectSelected = false
 
-    if (this.clients[0].value === ""){
-      this.clients.splice(0,1)
+    if (this.clients[0].value === "") {
+      this.clients.splice(0, 1)
     }
 
     this.createDeploymentComponentService.getProjects(this.deployment.clientId).then(results => {
@@ -67,9 +65,9 @@ export class CreateDeploymentComponent implements OnInit {
   }
 
   setProjectSelected() {
-    if(this.deployment.projectId !== ""){
-      if (this.projects[0].value === ""){
-        this.projects.splice(0,1)
+    if (this.deployment.projectId !== "") {
+      if (this.projects[0].value === "") {
+        this.projects.splice(0, 1)
       }
       this.isProjectSelected = true
     }

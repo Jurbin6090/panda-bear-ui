@@ -11,6 +11,7 @@ import {HttpModule} from '@angular/http';
 
 // Imported Modules
 import {ClientModule} from './client/client.module';
+import {CreateClientModule} from './create-client/create-client.module';
 import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
 import {DeploymentModule} from './deployment/deployment.module';
 import {EmployeeModule} from './employee/employee.module';
@@ -19,17 +20,20 @@ import {ButtonModule} from 'primeng/primeng';
 
 // Route Components
 import {ClientComponent} from './client/client.component';
+import {CreateClientComponent} from './create-client/create-client.component';
 import {CreateDeploymentComponent} from './create-deployment/create-deployment.component'
 import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
-import { CreateClientComponent } from './create-client/create-client.component';
 
 const appRoutes:Routes = [
   {
     path: 'client',
     component: ClientComponent
+  },{
+    path: 'create-client',
+    component: CreateClientComponent
   },
   {
     path: 'deployment/:deploymentId',
@@ -54,6 +58,7 @@ const appRoutes:Routes = [
     BrowserModule,
     HttpModule,
     ClientModule,
+    CreateClientModule,
     CreateDeploymentModule,
     DeploymentModule,
     EmployeeModule,
@@ -64,8 +69,7 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent,
-    CreateClientComponent
+    SidebarComponent
   ],
   bootstrap: [AppComponent]
 })

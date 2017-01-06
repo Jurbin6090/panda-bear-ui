@@ -106,7 +106,7 @@
       </template>
       <footer>
         <div class="ui-helper-clearfix">
-          <button type="button" pButton icon="fa-plus" style="float:left; width: 150px;" (click)="showDialog(client)"
+          <button type="button" pButton icon="fa-plus" style="float:left; width: 150px;" [routerLink]="['/create-client']"
                   label="Create Client"></button>
           <button type="button" pButton icon="fa-file-o" style="float:left; width: 150px;" (click)="dt.exportCSV()"
                   label="CSV"></button>
