@@ -10,7 +10,6 @@ import {HeaderComponent, SidebarComponent} from './core-components/core-componen
 import {HttpModule} from '@angular/http';
 
 // Imported Modules
-import {ClientModule} from './client/client.module';
 import {CreateClientModule} from './create-client/create-client.module';
 import {UpdateClientModule} from './update-client/update-client.module';
 import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
@@ -34,8 +33,6 @@ import { ProjectComponent } from './project/project.component';
 import { UpdateClientComponent } from './update-client/update-client.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 
-import {EmployeeComponentService} from "./employee/employee.component.service";
-
 import {
   SharedModule,
   ButtonModule,
@@ -52,6 +49,9 @@ import {
   RadioButtonModule,
   TriStateCheckboxModule
 } from 'primeng/primeng';
+
+import {EmployeeComponentService} from "./employee/employee.component.service";
+import {ClientComponentService} from "./client/service.component.service";
 
 const appRoutes:Routes = [
   {
@@ -117,7 +117,6 @@ const appRoutes:Routes = [
     TriStateCheckboxModule,
     BrowserModule,
     HttpModule,
-    ClientModule,
     CreateClientModule,
     UpdateClientModule,
     CreateDeploymentModule,
@@ -130,16 +129,18 @@ const appRoutes:Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
-    EmployeeComponent
+    EmployeeComponent,
+    ClientComponent
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    ClientComponent
   ],
   bootstrap: [AppComponent],
-  providers: [EmployeeComponentService]
+  providers: [EmployeeComponentService, ClientComponentService]
 })
 export class AppModule {
 }
