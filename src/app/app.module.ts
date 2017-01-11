@@ -17,10 +17,9 @@ import {CreateDeploymentModule} from './create-deployment/create-deployment.modu
 import {CreateProjectModule} from './create-project/create-project.module';
 import {UpdateProjectModule} from './update-project/update-project.module';
 import {DeploymentModule} from './deployment/deployment.module';
-import {EmployeeModule} from './employee/employee.module';
 import {ProjectModule} from './project/project.module';
 import {HomeModule} from './home/home.module';
-import {ButtonModule} from 'primeng/primeng';
+import {FormsModule}   from '@angular/forms';
 
 // Route Components
 import {ClientComponent} from './client/client.component';
@@ -35,6 +34,24 @@ import { ProjectComponent } from './project/project.component';
 import { UpdateClientComponent } from './update-client/update-client.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 
+import {EmployeeComponentService} from "./employee/employee.component.service";
+
+import {
+  SharedModule,
+  ButtonModule,
+  CalendarModule,
+  ConfirmDialogModule,
+  DataTableModule,
+  DialogModule,
+  DropdownModule,
+  InputTextModule,
+  InputTextareaModule,
+  ListboxModule,
+  PaginatorModule,
+  PasswordModule,
+  RadioButtonModule,
+  TriStateCheckboxModule
+} from 'primeng/primeng';
 
 const appRoutes:Routes = [
   {
@@ -81,6 +98,23 @@ const appRoutes:Routes = [
 
 @NgModule({
   imports: [
+    RouterModule,
+    BrowserModule,
+    FormsModule,
+    SharedModule,
+    ButtonModule,
+    CalendarModule,
+    DataTableModule,
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    ListboxModule,
+    PaginatorModule,
+    PasswordModule,
+    RadioButtonModule,
+    TriStateCheckboxModule,
     BrowserModule,
     HttpModule,
     ClientModule,
@@ -90,18 +124,22 @@ const appRoutes:Routes = [
     CreateProjectModule,
     UpdateProjectModule,
     DeploymentModule,
-    EmployeeModule,
     ProjectModule,
     HomeModule,
     ButtonModule,
     RouterModule.forRoot(appRoutes)
   ],
+  exports: [
+    EmployeeComponent
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    EmployeeComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [EmployeeComponentService]
 })
 export class AppModule {
 }
