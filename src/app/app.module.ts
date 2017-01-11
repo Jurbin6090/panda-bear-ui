@@ -45,12 +45,10 @@ import {
 
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
-import {ClientComponentService} from "./pages/client/client.component.service";
-import {CreateClientComponentService} from "./pages/create-client/create-client.component.service";
+import {ClientComponentService} from "./services/client.component.service";
 import {DeploymentComponentService} from "./pages/deployment/deployment.component.service";
 import {EmployeeComponentService} from "./pages/employee/employee.component.service";
 import {ProjectComponentService} from "./pages/project/project.component.service";
-import {UpdateClientComponentService} from "./pages/update-client/update-client.component.service";
 import {UpdateProjectComponentService} from "./pages/update-project/update-project.component.service";
 import {CreateDeploymentComponentService} from "./pages/create-deployment/create-deployment.component.service";
 
@@ -149,8 +147,8 @@ const appRoutes:Routes = [
     UpdateProjectComponent
   ],
   bootstrap: [AppComponent],
-  providers: [ClientComponentService, CreateClientComponentService, CreateDeploymentComponentService, DeploymentComponentService,
-    EmployeeComponentService, ProjectComponentService, UpdateClientComponentService, UpdateProjectComponentService]
+  providers: [ClientComponentService, CreateDeploymentComponentService, DeploymentComponentService,
+    EmployeeComponentService, ProjectComponentService, UpdateProjectComponentService]
 })
 export class AppModule {
 }

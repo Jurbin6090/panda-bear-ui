@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {CreateClientComponentService} from "./create-client.component.service";
+import {ClientComponentService} from "../../services/client.component.service";
 
 @Component({
   selector: 'app-create-client',
-  templateUrl: './create-client.component.html',
-  providers: [CreateClientComponentService]
+  templateUrl: './create-client.component.html'
 })
 export class CreateClientComponent implements OnInit {
   client
 
-  constructor(private createClientComponentService: CreateClientComponentService) {
+  constructor(private clientComponentService: ClientComponentService) {
     this.client = {"address":{}, "billing":{"contact":{},"partner":{}}}
   }
 
@@ -17,7 +16,7 @@ export class CreateClientComponent implements OnInit {
   }
 
   createClient(){
-    this.createClientComponentService.createClient(this.client).then(result => {
+    this.clientComponentService.createClient(this.client).then(result => {
       console.dir(result.json())
       alert("Client Created")
     })
