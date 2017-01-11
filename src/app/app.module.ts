@@ -10,7 +10,6 @@ import {HeaderComponent, SidebarComponent} from './core-components/core-componen
 import {HttpModule} from '@angular/http';
 
 // Imported Modules
-import {CreateClientModule} from './create-client/create-client.module';
 import {UpdateClientModule} from './update-client/update-client.module';
 import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
 import {CreateProjectModule} from './create-project/create-project.module';
@@ -52,6 +51,7 @@ import {
 
 import {EmployeeComponentService} from "./employee/employee.component.service";
 import {ClientComponentService} from "./client/service.component.service";
+import {CreateClientComponentService} from "./create-client/create-client.component.service";
 
 const appRoutes:Routes = [
   {
@@ -117,7 +117,6 @@ const appRoutes:Routes = [
     TriStateCheckboxModule,
     BrowserModule,
     HttpModule,
-    CreateClientModule,
     UpdateClientModule,
     CreateDeploymentModule,
     CreateProjectModule,
@@ -130,17 +129,19 @@ const appRoutes:Routes = [
   ],
   exports: [
     EmployeeComponent,
-    ClientComponent
+    ClientComponent,
+    CreateClientComponent
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
     EmployeeComponent,
-    ClientComponent
+    ClientComponent,
+    CreateClientComponent
   ],
   bootstrap: [AppComponent],
-  providers: [EmployeeComponentService, ClientComponentService]
+  providers: [EmployeeComponentService, ClientComponentService, CreateClientComponentService]
 })
 export class AppModule {
 }
