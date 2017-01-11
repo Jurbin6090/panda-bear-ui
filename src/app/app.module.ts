@@ -10,12 +10,6 @@ import {HeaderComponent, SidebarComponent} from './core-components/core-componen
 import {HttpModule} from '@angular/http';
 
 // Imported Modules
-import {UpdateClientModule} from './update-client/update-client.module';
-import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
-import {CreateProjectModule} from './create-project/create-project.module';
-import {UpdateProjectModule} from './update-project/update-project.module';
-import {DeploymentModule} from './deployment/deployment.module';
-import {ProjectModule} from './project/project.module';
 import {HomeModule} from './home/home.module';
 import {FormsModule}   from '@angular/forms';
 
@@ -27,11 +21,11 @@ import {CreateProjectComponent} from './create-project/create-project.component'
 import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
-import '@angular/material/core/theming/prebuilt/indigo-pink.css';
-import { ProjectComponent } from './project/project.component';
-import { UpdateClientComponent } from './update-client/update-client.component';
-import { UpdateProjectComponent } from './update-project/update-project.component';
+import {ProjectComponent} from './project/project.component';
+import {UpdateClientComponent} from './update-client/update-client.component';
+import {UpdateProjectComponent} from './update-project/update-project.component';
 
+//Imported primeng Modules
 import {
   SharedModule,
   ButtonModule,
@@ -46,12 +40,19 @@ import {
   PaginatorModule,
   PasswordModule,
   RadioButtonModule,
-  TriStateCheckboxModule
+  TriStateCheckboxModule, CheckboxModule
 } from 'primeng/primeng';
 
-import {EmployeeComponentService} from "./employee/employee.component.service";
+import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+
 import {ClientComponentService} from "./client/service.component.service";
 import {CreateClientComponentService} from "./create-client/create-client.component.service";
+import {DeploymentComponentService} from "./deployment/deployment.component.service";
+import {EmployeeComponentService} from "./employee/employee.component.service";
+import {ProjectComponentService} from "./project/project.component.service";
+import {UpdateClientComponentService} from "./update-client/update-client.component.service";
+import {UpdateProjectComponentService} from "./update-project/update-project.component.service";
+import {CreateDeploymentComponentService} from "./create-deployment/create-deployment.component.service";
 
 const appRoutes:Routes = [
   {
@@ -71,7 +72,7 @@ const appRoutes:Routes = [
     component: UpdateClientComponent
   },
   {
-    path: 'update-project/',
+    path: 'update-project/:projectId',
     component: UpdateProjectComponent
   },
   {
@@ -104,6 +105,7 @@ const appRoutes:Routes = [
     SharedModule,
     ButtonModule,
     CalendarModule,
+    CheckboxModule,
     DataTableModule,
     ConfirmDialogModule,
     DialogModule,
@@ -117,31 +119,38 @@ const appRoutes:Routes = [
     TriStateCheckboxModule,
     BrowserModule,
     HttpModule,
-    UpdateClientModule,
-    CreateDeploymentModule,
-    CreateProjectModule,
-    UpdateProjectModule,
-    DeploymentModule,
-    ProjectModule,
     HomeModule,
     ButtonModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
-    EmployeeComponent,
     ClientComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    CreateDeploymentComponent,
+    CreateProjectComponent,
+    DeploymentComponent,
+    EmployeeComponent,
+    ProjectComponent,
+    UpdateClientComponent,
+    UpdateProjectComponent
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    EmployeeComponent,
     ClientComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    CreateDeploymentComponent,
+    CreateProjectComponent,
+    DeploymentComponent,
+    EmployeeComponent,
+    ProjectComponent,
+    UpdateClientComponent,
+    UpdateProjectComponent
   ],
   bootstrap: [AppComponent],
-  providers: [EmployeeComponentService, ClientComponentService, CreateClientComponentService]
+  providers: [ClientComponentService, CreateClientComponentService, CreateDeploymentComponentService, DeploymentComponentService,
+    EmployeeComponentService, ProjectComponentService, UpdateClientComponentService, UpdateProjectComponentService]
 })
 export class AppModule {
 }

@@ -54,9 +54,6 @@ export class CreateDeploymentComponent implements OnInit {
 
       this.projects.push({label: "Select a project", value: ""})
 
-      console.log('Results: ')
-      console.dir(results.json())
-
       results.json().forEach(project => {
         this.projects.push({label: project.name, value: project.id})
       })
@@ -75,15 +72,22 @@ export class CreateDeploymentComponent implements OnInit {
   }
 
   createDeployment() {
+    console.log("createDeployment method called")
+
     let deployment = Object.assign({}, this.deployment)
+
+    console.dir(this.deployment)
+    console.dir(deployment)
 
     if (!this.isBillable) {
       deployment.billing = null
+    } else if (!deployment.billing.cycle) {
+      deployment.billing.cycle = this.cycles[0].value
     }
 
     this.createDeploymentComponentService.createDeployment(deployment).then(result => {
         console.dir(result.json())
-        alert("Employee Created")
+        alert("Deployment Created")
       }
     )
 
