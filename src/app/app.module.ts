@@ -12,8 +12,10 @@ import {HttpModule} from '@angular/http';
 // Imported Modules
 import {ClientModule} from './client/client.module';
 import {CreateClientModule} from './create-client/create-client.module';
+import {UpdateClientModule} from './update-client/update-client.module';
 import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
 import {CreateProjectModule} from './create-project/create-project.module';
+import {UpdateProjectModule} from './update-project/update-project.module';
 import {DeploymentModule} from './deployment/deployment.module';
 import {EmployeeModule} from './employee/employee.module';
 import {ProjectModule} from './project/project.module';
@@ -30,6 +32,8 @@ import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 import { ProjectComponent } from './project/project.component';
+import { UpdateClientComponent } from './update-client/update-client.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 
 const appRoutes:Routes = [
@@ -44,6 +48,14 @@ const appRoutes:Routes = [
   {
     path: 'create-project',
     component: CreateProjectComponent
+  },
+  {
+    path: 'update-client',
+    component: UpdateClientComponent
+  },
+  {
+    path: 'update-project',
+    component: UpdateProjectComponent
   },
   {
     path: 'deployment/:deploymentId',
@@ -73,8 +85,10 @@ const appRoutes:Routes = [
     HttpModule,
     ClientModule,
     CreateClientModule,
+    UpdateClientModule,
     CreateDeploymentModule,
     CreateProjectModule,
+    UpdateProjectModule,
     DeploymentModule,
     EmployeeModule,
     ProjectModule,
