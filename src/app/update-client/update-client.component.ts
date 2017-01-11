@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {UpdateClientComponentService} from "./update-project.component.service";
+import {UpdateClientComponentService} from "./update-client.component.service";
 
 @Component({
   selector: 'app-update-client',

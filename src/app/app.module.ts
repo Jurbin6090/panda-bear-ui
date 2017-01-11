@@ -54,7 +54,7 @@ const appRoutes:Routes = [
     component: UpdateClientComponent
   },
   {
-    path: 'update-project/:projectId',
+    path: 'update-project/',
     component: UpdateProjectComponent
   },
   {
