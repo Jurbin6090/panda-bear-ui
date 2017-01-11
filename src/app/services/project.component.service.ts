@@ -20,16 +20,16 @@ export class ProjectComponentService {
     return this.http.get("http://localhost:8085/project").toPromise()
   }
 
+  getProjectsByClient(id):Promise<Response> {
+    return this.http.get("http://localhost:8085/project/findByClient/" + id).toPromise()
+  }
+
   createProject(project) {
     return this.http.post("http://localhost:8085/project", project).toPromise()
   }
 
   updateProject(project) {
     return this.http.patch("http://localhost:8085/project", project).toPromise()
-  }
-
-  getClients():Promise<Response> {
-    return this.http.get("http://localhost:8085/client/").toPromise()
   }
 
   getProject(projectId) {

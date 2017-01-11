@@ -23,8 +23,4 @@ export class EmployeeComponentService {
   getEmployees():Promise<Response> {
     return this.http.get("http://localhost:8080/employee").toPromise()
   }
-
-  getDeploymentsSummary(employeeId):Promise<Response> {
-    return this.http.get("http://localhost:8088/deployment/employee/" + employeeId).toPromise()
-  }
 }

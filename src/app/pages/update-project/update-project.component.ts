@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SelectItem} from "primeng/primeng";
 import {ProjectComponentService} from "../../services/project.component.service";
+import {ClientComponentService} from "../../services/client.component.service";
 
 @Component({
   selector: 'app-update-project',
@@ -13,10 +14,11 @@ export class UpdateProjectComponent implements OnInit {
   projectId
   clients:SelectItem[]
 
-  constructor(private activatedRoute:ActivatedRoute, private projectComponentService:ProjectComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private projectComponentService:ProjectComponentService,
+              private clientComponentService:ClientComponentService) {
     this.project = {"address": {}, "manager": {}}
 
-    this.projectComponentService.getClients().then(results => {
+    this.clientComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 

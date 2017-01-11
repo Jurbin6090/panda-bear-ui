@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {SelectItem} from "primeng/primeng";
 import {DeploymentComponentService} from "../../services/deployment.component.service";
+import {ClientComponentService} from "../../services/client.component.service";
+import {ProjectComponentService} from "../../services/project.component.service";
 
 @Component({
   selector: 'app-create-deployment',
@@ -19,7 +21,9 @@ export class CreateDeploymentComponent implements OnInit {
   isProjectSelected:boolean = false
 
 
-  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService,
+              private clientComponentService:ClientComponentService,
+              private projectComponentService:ProjectComponentService) {
     this.deployment = {"dates": {}, "billing": {}, "contact": {"address": {}}}
   }
 
@@ -28,7 +32,7 @@ export class CreateDeploymentComponent implements OnInit {
     this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 1}]
     this.projects = [{label: "Select a client", value: ""}]
 
-    this.deploymentComponentService.getClients().then(results => {
+    this.clientComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -49,7 +53,7 @@ export class CreateDeploymentComponent implements OnInit {
       this.clients.splice(0, 1)
     }
 
-    this.deploymentComponentService.getProjects(this.deployment.clientId).then(results => {
+    this.projectComponentService.getProjectsByClient(this.deployment.clientId).then(results => {
       this.projects = []
 
       this.projects.push({label: "Select a project", value: ""})
@@ -76,9 +80,6 @@ export class CreateDeploymentComponent implements OnInit {
 
     let deployment = Object.assign({}, this.deployment)
 
-    console.dir(this.deployment)
-    console.dir(deployment)
-
     if (!this.isBillable) {
       deployment.billing = null
     } else if (!deployment.billing.cycle) {
@@ -86,7 +87,6 @@ export class CreateDeploymentComponent implements OnInit {
     }
 
     this.deploymentComponentService.createDeployment(deployment).then(result => {
-        console.dir(result.json())
         alert("Deployment Created")
       }
     )

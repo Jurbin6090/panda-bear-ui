@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from "primeng/primeng";
 import {ProjectComponentService} from "../../services/project.component.service";
+import {ClientComponentService} from "../../services/client.component.service";
 
 @Component({
   selector: 'app-create-project',
@@ -11,12 +12,12 @@ export class CreateProjectComponent implements OnInit {
   clients:SelectItem[]
   isClientSelected:boolean = false
 
-  constructor(private projectComponentService:ProjectComponentService) {
+  constructor(private projectComponentService:ProjectComponentService, private clientComponentService:ClientComponentService) {
     this.project = {"address": {}, "manager": {}}
   }
 
   ngOnInit() {
-    this.projectComponentService.getClients().then(results => {
+    this.clientComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -36,7 +37,6 @@ export class CreateProjectComponent implements OnInit {
 
   createClient() {
     this.projectComponentService.createProject(this.project).then(result => {
-      console.dir(result.json())
       alert("Project Created")
     })
   }

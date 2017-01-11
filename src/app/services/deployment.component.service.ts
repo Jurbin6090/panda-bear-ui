@@ -18,10 +18,6 @@ export class DeploymentComponentService {
     return this.http.get("http://localhost:8088/deployment/full/" + deploymentId).toPromise()
   }
 
-  getProject(projectId) {
-    return this.http.get("http://localhost:8085/project/" + projectId).toPromise()
-  }
-
   createDeployment(deployment) {
     return this.http.post("http://localhost:8088/deployment", deployment).toPromise()
   }
@@ -30,11 +26,7 @@ export class DeploymentComponentService {
     return this.http.patch("http://localhost:8088/deployment/" + deployment.id, deployment).toPromise()
   }
 
-  getClients():Promise<Response> {
-    return this.http.get("http://localhost:8085/client/").toPromise()
-  }
-
-  getProjects(id):Promise<Response> {
-    return this.http.get("http://localhost:8085/project/findByClient/" + id).toPromise()
+  getDeploymentsSummary(employeeId):Promise<Response> {
+    return this.http.get("http://localhost:8088/deployment/employee/" + employeeId).toPromise()
   }
 }

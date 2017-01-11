@@ -17,7 +17,6 @@ export class CreateClientComponent implements OnInit {
 
   createClient(){
     this.clientComponentService.createClient(this.client).then(result => {
-      console.dir(result.json())
       alert("Client Created")
     })
   }
