@@ -50,11 +50,11 @@ const appRoutes:Routes = [
     component: CreateProjectComponent
   },
   {
-    path: 'update-client',
+    path: 'update-client/:clientId',
     component: UpdateClientComponent
   },
   {
-    path: 'update-project',
+    path: 'update-project/:projectId',
     component: UpdateProjectComponent
   },
   {
