@@ -38,22 +38,6 @@ export class ClientComponent implements OnInit {
         // names must be equal
         return 0;
       })
-    }).then(clients => {
-      this.clients.forEach(client => client.billing =
-      {
-        "partner": {
-          "name": "Test Partner",
-          "percentage": "20"
-        },
-        "contact": {
-          "name": "Brian Goetz",
-          "phone": "(212)-640-2000",
-          "email": "bgotez@aexp.com"
-        },
-        "cycle":"NET 45",
-        "paymentTerms":"Test",
-        "agencyFee":"Test"
-      })
     })
   }
 }

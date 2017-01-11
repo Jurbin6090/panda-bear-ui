@@ -1,83 +1,148 @@
 <div class="content">
-  <div class="column col-md-3">
-    <div style="padding:10px">
-      <!--{{full.deployment.id}}-->
-      <h2>{{full.employee.firstName}} {{full.employee.lastName}}</h2>
-      <h3>{{full.client.name}}</h3>
-      <h3>{{full.project.name}}</h3>
-    </div>
+  <div class="container-fluid">
+    <div class="column col-md-3">
+      <div style="padding:10px" hidden>
+        <label for="employeeId">Employee Id</label>
+        <br/>
+        <input id="employeeId" type="text" pInputText [(ngModel)]="full.deployment.employeeId"/>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="clientId">Client</label>
+          <br/>
 
-    <div class="container-fluid" style="display:flex">
-      <div class="column col-md-3">
+          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients"
+                      (onChange)="setProjectSelected()" [(ngModel)]="full.client.id"></p-dropdown>
+        </div>
+        <div style="padding:10px">
+          <label for="projectId">Project</label>
+          <br/>
+          <p-dropdown id="projectId" [style]="{'width':'200px'}" [options]="projects"
+                      [(ngModel)]="full.deployment.projectId"></p-dropdown>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="managerEmail">Email</label>
+          <br/>
+          <input id="managerEmail" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="full.deployment.contact.email"/>
+        </div>
+        <div style="padding:10px">
+          <label for="managerPhone">Phone</label>
+          <br/>
+          <input id="managerPhone" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="full.deployment.contact.phone"/>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
         <div style="padding:10px">
           <label for="startDate">Start Date</label>
           <br/>
-          <input id="startDate" type="text" pInputText [(ngModel)]="full.deployment.dates.startDate"/>
+          <p-calendar id="startDate" [style]="{'width':'200px'}" [(ngModel)]="full.deployment.dates.startDate"
+                      monthNavigator="true" yearNavigator="true" yearRange="1990:2030">
+          </p-calendar>
         </div>
         <div style="padding:10px">
           <label for="projectedEndDate">Projected End Date</label>
           <br/>
-          <input id="projectedEndDate" type="text" pInputText [(ngModel)]="full.deployment.dates.projectedEndDate"/>
+          <p-calendar id="projectedEndDate" [style]="{'width':'200px'}"
+                      [(ngModel)]="full.deployment.dates.projectedEndDate"
+                      monthNavigator="true" yearNavigator="true" yearRange="1990:2030" readonlyInput="readonlyInput">
+          </p-calendar>
         </div>
         <div style="padding:10px">
-          <label for="actualEndDate">Actual End Date</label>
+          <label for="endDate">End Date</label>
           <br/>
-          <input id="actualEndDate" type="text" pInputText [(ngModel)]="full.deployment.dates.endDate"/>
-        </div>
-        <div style="padding:10px">
-          <label for="billingRate">Billing Rate</label>
-          <br/>
-          <input id="billingRate" type="text" pInputText [(ngModel)]="full.deployment.billing.rate"/>
-        </div>
-        <div style="padding:10px">
-          <label for="billingCycle">Billing Cycle</label>
-          <br/>
-          <input id="billingCycle" type="text" pInputText [(ngModel)]="full.deployment.billing.cycle"/>
+          <p-calendar id="endDate" [style]="{'width':'200px'}"
+                      [(ngModel)]="full.deployment.dates.endDate"
+                      monthNavigator="true" yearNavigator="true" yearRange="1990:2030" readonlyInput="readonlyInput">
+          </p-calendar>
         </div>
       </div>
       <div class="column col-md-3">
-        <div style="padding:10px">
-          <label for="street1">Street 1</label>
-          <br/>
-          <input id="street1" type="text" pInputText [(ngModel)]="full.deployment.address.street1"/>
-        </div>
-        <div style="padding:10px">
-          <label for="street2">Street 2</label>
-          <br/>
-          <input id="street2" type="text" pInputText [(ngModel)]="full.deployment.address.street2"/>
-        </div>
-        <div style="padding:10px">
-          <label for="city">City</label>
-          <br/>
-          <input id="city" type="text" pInputText [(ngModel)]="full.deployment.address.city"/>
-        </div>
-        <div style="padding:10px">
-          <label for="state">State</label>
-          <br/>
-          <input id="state" type="text" pInputText [(ngModel)]="full.deployment.address.state"/>
-        </div>
-        <div style="padding:10px">
-          <label for="zip">Zip Code</label>
-          <br/>
-          <input id="zip" type="text" pInputText [(ngModel)]="full.deployment.address.zip"/>
-        </div>
-        <div style="padding:10px">
-          <label for="country">Country</label>
-          <br/>
-          <input id="country" type="text" pInputText [(ngModel)]="full.deployment.address.country"/>
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="billable">Billable</label>
+            <br/>
+            <p-checkbox id="billable" [(ngModel)]="isBillable" binary="true"></p-checkbox>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
+            <label for="billingCycle">Billing Cycle</label>
+            <br/>
+            <p-dropdown id="billingCycle" [style]="{'width':'100px'}" [options]="cycles"
+                        [(ngModel)]="full.deployment.billing.cycle" selected="selected"></p-dropdown>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
+            <label for="billingRate">Billing Rate</label>
+            <br/>
+            <input id="billingRate" style="width: 93px" type="number" pInputText
+                   [(ngModel)]="full.deployment.billing.rate"/>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
+            <label for="mgmtSvcSurcharge">Mgmt Svc Sur</label>
+            <br/>
+            <input id="mgmtSvcSurcharge" style="width: 93px" type="number" pInputText
+                   [(ngModel)]="full.deployment.billing.mgmtSvcSurcharge"/>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
+            <label for="permFee">Perm Fee</label>
+            <br/>
+            <input id="permFee" style="width: 118px" type="text" pInputText
+                   [(ngModel)]="full.deployment.billing.permFee"/>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
+            <label for="taxable">Taxable</label>
+            <br/>
+            <p-checkbox id="taxable" binary="true" [(ngModel)]="full.deployment.billing.taxable"></p-checkbox>
+          </div>
         </div>
       </div>
       <div class="column col-md-3">
-        <div style="padding:10px">
-          <label for="taxable">Taxable</label>
-          <br/>
-          <input id="taxable" type="text" pInputText [(ngModel)]="full.deployment.billing.taxable"/>
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="street1">Street 1</label>
+            <br/>
+            <input id="street1" style="width: 190px" type="text" pInputText
+                   [(ngModel)]="full.deployment.contact.address.street1"/>
+          </div>
+          <div style="padding:10px">
+            <label for="street2">Street 2</label>
+            <br/>
+            <input id="street2" style="width: 190px" type="text" pInputText
+                   [(ngModel)]="full.deployment.contact.address.street2"/>
+          </div>
         </div>
-        <div style="padding:10px">
-          <label for="mgmtSvcSurcharge">Management Service Surcharge</label>
-          <br/>
-          <input id="mgmtSvcSurcharge" type="text" pInputText [(ngModel)]="full.deployment.billing.mgmtSvcSurcharge"/>
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="city">City</label>
+            <br/>
+            <input id="city" style="width: 100px" type="text" pInputText
+                   [(ngModel)]="full.deployment.contact.address.city"/>
+          </div>
+          <div style="padding:10px">
+            <label for="state">State</label>
+            <br/>
+            <input id="state" style="width: 100px" type="text" pInputText
+                   [(ngModel)]="full.deployment.contact.address.state"/>
+          </div>
+          <div style="padding:10px">
+            <label for="zip">Zip Code</label>
+            <br/>
+            <input id="zip" style="width: 100px" type="text" pInputText
+                   [(ngModel)]="full.deployment.contact.address.zip"/>
+          </div>
+          <div style="padding:10px">
+            <label for="country">Country</label>
+            <br/>
+            <input id="country" type="text" pInputText [(ngModel)]="full.deployment.contact.address.country"/>
+          </div>
         </div>
       </div>
     </div>
+    <div>
+      <button pButton type="button" label="Update Deployment"
+              (click)="updateDeployment(full.deployment.id)"></button>
+    </div>
   </div>
+</div>

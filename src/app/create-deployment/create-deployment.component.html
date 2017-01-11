@@ -9,8 +9,7 @@
       <div class="row" style="display: flex;">
         <div style="padding:10px">
           <label for="clientId">Client</label>
-          <br/>
-          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients" [(ngModel)]="deployment.clientId"
+          <br/>          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients" [(ngModel)]="deployment.clientId"
                       (onChange)="setClientSelected()"></p-dropdown>
         </div>
         <div [hidden]="!isClientSelected" style="padding:10px">
@@ -22,19 +21,14 @@
       </div>
       <div class="row" style="display: flex;">
         <div [hidden]="!isProjectSelected" style="padding:10px">
-          <label for="managerName">Manager Name</label>
-          <br/>
-          <input id="managerName" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.manager.name"/>
-        </div>
-        <div [hidden]="!isProjectSelected" style="padding:10px">
           <label for="managerEmail">Email</label>
           <br/>
-          <input id="managerEmail" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.manager.email"/>
+          <input id="managerEmail" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.contact.email"/>
         </div>
         <div [hidden]="!isProjectSelected" style="padding:10px">
           <label for="managerPhone">Phone</label>
           <br/>
-          <input id="managerPhone" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.manager.phone"/>
+          <input id="managerPhone" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.contact.phone"/>
         </div>
       </div>
       <div class="row" style="display: flex;">
@@ -78,6 +72,11 @@
                    [(ngModel)]="deployment.billing.mgmtSvcSurcharge"/>
           </div>
           <div [hidden]="!isBillable" style="padding:10px">
+            <label for="permFee">Perm Fee</label>
+            <br/>
+            <input id="permFee" style="width: 118px" type="text" pInputText [(ngModel)]="deployment.billing.permFee"/>
+          </div>
+          <div [hidden]="!isBillable" style="padding:10px">
             <label for="taxable">Taxable</label>
             <br/>
             <p-checkbox id="taxable" binary="true" [(ngModel)]="deployment.billing.taxable"></p-checkbox>
@@ -89,34 +88,34 @@
           <div style="padding:10px">
             <label for="street1">Street 1</label>
             <br/>
-            <input id="street1" style="width: 190px" type="text" pInputText [(ngModel)]="deployment.address.street1"/>
+            <input id="street1" style="width: 190px" type="text" pInputText [(ngModel)]="deployment.contact.address.street1"/>
           </div>
           <div style="padding:10px">
             <label for="street2">Street 2</label>
             <br/>
-            <input id="street2" style="width: 190px" type="text" pInputText [(ngModel)]="deployment.address.street2"/>
+            <input id="street2" style="width: 190px" type="text" pInputText [(ngModel)]="deployment.contact.address.street2"/>
           </div>
         </div>
         <div class="row" style="display: flex;">
           <div style="padding:10px">
             <label for="city">City</label>
             <br/>
-            <input id="city" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.address.city"/>
+            <input id="city" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.contact.address.city"/>
           </div>
           <div style="padding:10px">
             <label for="state">State</label>
             <br/>
-            <input id="state" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.address.state"/>
+            <input id="state" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.contact.address.state"/>
           </div>
           <div style="padding:10px">
             <label for="zip">Zip Code</label>
             <br/>
-            <input id="zip" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.address.zip"/>
+            <input id="zip" style="width: 100px" type="text" pInputText [(ngModel)]="deployment.contact.address.zip"/>
           </div>
           <div style="padding:10px">
             <label for="country">Country</label>
             <br/>
-            <input id="country" type="text" pInputText [(ngModel)]="deployment.address.country"/>
+            <input id="country" type="text" pInputText [(ngModel)]="deployment.contact.address.country"/>
           </div>
         </div>
       </div>

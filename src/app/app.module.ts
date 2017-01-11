@@ -16,6 +16,7 @@ import {CreateDeploymentModule} from './create-deployment/create-deployment.modu
 import {CreateProjectModule} from './create-project/create-project.module';
 import {DeploymentModule} from './deployment/deployment.module';
 import {EmployeeModule} from './employee/employee.module';
+import {ProjectModule} from './project/project.module';
 import {HomeModule} from './home/home.module';
 import {ButtonModule} from 'primeng/primeng';
 
@@ -28,6 +29,7 @@ import {DeploymentComponent} from './deployment/deployment.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {HomeComponent} from './home/home.component';
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+import { ProjectComponent } from './project/project.component';
 
 
 const appRoutes:Routes = [
@@ -56,6 +58,10 @@ const appRoutes:Routes = [
     component: EmployeeComponent
   },
   {
+    path: 'project',
+    component: ProjectComponent
+  },
+  {
     path: '',
     component: HomeComponent
   }
@@ -71,6 +77,7 @@ const appRoutes:Routes = [
     CreateProjectModule,
     DeploymentModule,
     EmployeeModule,
+    ProjectModule,
     HomeModule,
     ButtonModule,
     RouterModule.forRoot(appRoutes)

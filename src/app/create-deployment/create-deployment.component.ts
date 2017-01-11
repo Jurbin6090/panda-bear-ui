@@ -20,12 +20,12 @@ export class CreateDeploymentComponent implements OnInit {
 
 
   constructor(private activatedRoute:ActivatedRoute, private createDeploymentComponentService:CreateDeploymentComponentService) {
-    this.deployment = {"address": {}, "dates": {}, "billing": {}, "manager": {}}
+    this.deployment = {"dates": {}, "billing": {}, "contact": {"address": {}}}
   }
 
   ngOnInit() {
     this.booleans = [{label: "False", value: 0}, {label: "True", value: 1}]
-    this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 0}]
+    this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 1}]
     this.projects = [{label: "Select a client", value: ""}]
 
     this.createDeploymentComponentService.getClients().then(results => {
@@ -54,6 +54,9 @@ export class CreateDeploymentComponent implements OnInit {
 
       this.projects.push({label: "Select a project", value: ""})
 
+      console.log('Results: ')
+      console.dir(results.json())
+
       results.json().forEach(project => {
         this.projects.push({label: project.name, value: project.id})
       })
@@ -76,9 +79,6 @@ export class CreateDeploymentComponent implements OnInit {
 
     if (!this.isBillable) {
       deployment.billing = null
-
-    } else if (!deployment.billing.cycle) {
-      deployment.billing.cycle = this.cycles[0].value
     }
 
     this.createDeploymentComponentService.createDeployment(deployment).then(result => {
