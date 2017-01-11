@@ -1,23 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {CreateProjectComponentService} from "./create-project.component.service";
 import {SelectItem} from "primeng/primeng";
+import {ProjectComponentService} from "../../services/project.component.service";
 
 @Component({
   selector: 'app-create-project',
-  templateUrl: './create-project.component.html',
-  providers: [CreateProjectComponentService]
+  templateUrl: './create-project.component.html'
 })
 export class CreateProjectComponent implements OnInit {
   project
   clients:SelectItem[]
   isClientSelected:boolean = false
 
-  constructor(private createProjectComponentService:CreateProjectComponentService) {
+  constructor(private projectComponentService:ProjectComponentService) {
     this.project = {"address": {}, "manager": {}}
   }
 
   ngOnInit() {
-    this.createProjectComponentService.getClients().then(results => {
+    this.projectComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -36,7 +35,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   createClient() {
-    this.createProjectComponentService.createProject(this.project).then(result => {
+    this.projectComponentService.createProject(this.project).then(result => {
       console.dir(result.json())
       alert("Project Created")
     })

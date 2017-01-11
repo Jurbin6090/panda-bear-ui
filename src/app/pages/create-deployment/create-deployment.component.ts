@@ -1,12 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {CreateDeploymentComponentService} from "./create-deployment.component.service";
 import {SelectItem} from "primeng/primeng";
+import {DeploymentComponentService} from "../../services/deployment.component.service";
 
 @Component({
   selector: 'app-create-deployment',
   templateUrl: './create-deployment.component.html',
-  providers: [CreateDeploymentComponentService]
+  providers: [DeploymentComponentService]
 })
 export class CreateDeploymentComponent implements OnInit {
   deployment
@@ -19,7 +19,7 @@ export class CreateDeploymentComponent implements OnInit {
   isProjectSelected:boolean = false
 
 
-  constructor(private activatedRoute:ActivatedRoute, private createDeploymentComponentService:CreateDeploymentComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService) {
     this.deployment = {"dates": {}, "billing": {}, "contact": {"address": {}}}
   }
 
@@ -28,7 +28,7 @@ export class CreateDeploymentComponent implements OnInit {
     this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 1}]
     this.projects = [{label: "Select a client", value: ""}]
 
-    this.createDeploymentComponentService.getClients().then(results => {
+    this.deploymentComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -49,7 +49,7 @@ export class CreateDeploymentComponent implements OnInit {
       this.clients.splice(0, 1)
     }
 
-    this.createDeploymentComponentService.getProjects(this.deployment.clientId).then(results => {
+    this.deploymentComponentService.getProjects(this.deployment.clientId).then(results => {
       this.projects = []
 
       this.projects.push({label: "Select a project", value: ""})
@@ -85,7 +85,7 @@ export class CreateDeploymentComponent implements OnInit {
       deployment.billing.cycle = this.cycles[0].value
     }
 
-    this.createDeploymentComponentService.createDeployment(deployment).then(result => {
+    this.deploymentComponentService.createDeployment(deployment).then(result => {
         console.dir(result.json())
         alert("Deployment Created")
       }

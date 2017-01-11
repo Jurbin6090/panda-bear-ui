@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DeploymentComponentService} from "./deployment.component.service";
+import {DeploymentComponentService} from "../../services/deployment.component.service";
 import {SelectItem} from "primeng/primeng";
 
 @Component({

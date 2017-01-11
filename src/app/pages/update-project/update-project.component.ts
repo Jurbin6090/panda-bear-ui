@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UpdateProjectComponentService} from "./update-project.component.service";
 import {SelectItem} from "primeng/primeng";
+import {ProjectComponentService} from "../../services/project.component.service";
 
 @Component({
   selector: 'app-update-project',
   templateUrl: './update-project.component.html',
-  providers: [UpdateProjectComponentService]
+  providers: [ProjectComponentService]
 })
 export class UpdateProjectComponent implements OnInit {
   project
   projectId
   clients:SelectItem[]
 
-  constructor(private activatedRoute:ActivatedRoute, private updateProjectComponentService:UpdateProjectComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private projectComponentService:ProjectComponentService) {
     this.project = {"address": {}, "manager": {}}
 
-    this.updateProjectComponentService.getClients().then(results => {
+    this.projectComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -35,14 +35,14 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   getProject() {
-    this.updateProjectComponentService.getProject(this.projectId).then(results => {
+    this.projectComponentService.getProject(this.projectId).then(results => {
       let project = results.json()
       this.project = project
     })
   }
 
   updateProject() {
-    this.updateProjectComponentService.updateProject(this.project).then(()=> alert("Project Updated"))
+    this.projectComponentService.updateProject(this.project).then(()=> alert("Project Updated"))
   }
 
 }
