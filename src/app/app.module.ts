@@ -10,20 +10,20 @@ import {HeaderComponent, SidebarComponent} from './core-components/core-componen
 import {HttpModule} from '@angular/http';
 
 // Imported Modules
-import {HomeModule} from './home/home.module';
+import {HomeModule} from './pages/home/home.module';
 import {FormsModule}   from '@angular/forms';
 
 // Route Components
-import {ClientComponent} from './client/client.component';
-import {CreateClientComponent} from './create-client/create-client.component';
-import {CreateDeploymentComponent} from './create-deployment/create-deployment.component'
-import {CreateProjectComponent} from './create-project/create-project.component';
-import {DeploymentComponent} from './deployment/deployment.component';
-import {EmployeeComponent} from './employee/employee.component';
-import {HomeComponent} from './home/home.component';
-import {ProjectComponent} from './project/project.component';
-import {UpdateClientComponent} from './update-client/update-client.component';
-import {UpdateProjectComponent} from './update-project/update-project.component';
+import {ClientComponent} from './pages/client/client.component';
+import {CreateClientComponent} from './pages/create-client/create-client.component';
+import {CreateDeploymentComponent} from './pages/create-deployment/create-deployment.component'
+import {CreateProjectComponent} from './pages/create-project/create-project.component';
+import {DeploymentComponent} from './pages/deployment/deployment.component';
+import {EmployeeComponent} from './pages/employee/employee.component';
+import {HomeComponent} from './pages/home/home.component';
+import {ProjectComponent} from './pages/project/project.component';
+import {UpdateClientComponent} from './pages/update-client/update-client.component';
+import {UpdateProjectComponent} from './pages/update-project/update-project.component';
 
 //Imported primeng Modules
 import {
@@ -45,14 +45,14 @@ import {
 
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
-import {ClientComponentService} from "./client/client.component.service";
-import {CreateClientComponentService} from "./create-client/create-client.component.service";
-import {DeploymentComponentService} from "./deployment/deployment.component.service";
-import {EmployeeComponentService} from "./employee/employee.component.service";
-import {ProjectComponentService} from "./project/project.component.service";
-import {UpdateClientComponentService} from "./update-client/update-client.component.service";
-import {UpdateProjectComponentService} from "./update-project/update-project.component.service";
-import {CreateDeploymentComponentService} from "./create-deployment/create-deployment.component.service";
+import {ClientComponentService} from "./pages/client/client.component.service";
+import {CreateClientComponentService} from "./pages/create-client/create-client.component.service";
+import {DeploymentComponentService} from "./pages/deployment/deployment.component.service";
+import {EmployeeComponentService} from "./pages/employee/employee.component.service";
+import {ProjectComponentService} from "./pages/project/project.component.service";
+import {UpdateClientComponentService} from "./pages/update-client/update-client.component.service";
+import {UpdateProjectComponentService} from "./pages/update-project/update-project.component.service";
+import {CreateDeploymentComponentService} from "./pages/create-deployment/create-deployment.component.service";
 
 const appRoutes:Routes = [
   {
