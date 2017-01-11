@@ -1,0 +1,81 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="column col-md-3">
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="clientId">Client</label>
+          <br/>
+          <p-dropdown id="clientId" [style]="{'width':'200px'}" [options]="clients"
+                      [(ngModel)]="project.clientId"></p-dropdown>
+        </div>
+        <div style="padding:10px">
+          <label for="projectName">Name</label>
+          <br/>
+          <input id="projectName" style="width: 118px" type="text" pInputText [(ngModel)]="project.name"/>
+        </div>
+        <div style="padding:10px">
+          <label for="workOrder">Work Order/PO #</label>
+          <br/>
+          <input id="workOrder" style="width: 93px" type="text" pInputText [(ngModel)]="project.workOrder"/>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="managerName">Manager Name</label>
+          <br/>
+          <input id="managerName" style="width: 118px" type="text" pInputText [(ngModel)]="project.manager.name"/>
+        </div>
+        <div style="padding:10px">
+          <label for="managerEmail">Email</label>
+          <br/>
+          <input id="managerEmail" style="width: 118px" type="text" pInputText [(ngModel)]="project.manager.email"/>
+        </div>
+        <div style="padding:10px">
+          <label for="managerPhone">Phone</label>
+          <br/>
+          <input id="managerPhone" style="width: 118px" type="text" pInputText [(ngModel)]="project.manager.phone"/>
+        </div>
+      </div>
+      <div class="column col-md-3">
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="street1">Street 1</label>
+            <br/>
+            <input id="street1" style="width: 190px" type="text" pInputText [(ngModel)]="project.address.street1"/>
+          </div>
+          <div style="padding:10px">
+            <label for="street2">Street 2</label>
+            <br/>
+            <input id="street2" style="width: 190px" type="text" pInputText [(ngModel)]="project.address.street2"/>
+          </div>
+        </div>
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="city">City</label>
+            <br/>
+            <input id="city" style="width: 100px" type="text" pInputText [(ngModel)]="project.address.city"/>
+          </div>
+          <div style="padding:10px">
+            <label for="state">State</label>
+            <br/>
+            <input id="state" style="width: 100px" type="text" pInputText [(ngModel)]="project.address.state"/>
+          </div>
+          <div style="padding:10px">
+            <label for="zip">Zip Code</label>
+            <br/>
+            <input id="zip" style="width: 100px" type="text" pInputText [(ngModel)]="project.address.zip"/>
+          </div>
+          <div style="padding:10px">
+            <label for="country">Country</label>
+            <br/>
+            <input id="country" type="text" pInputText [(ngModel)]="project.address.country"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button pButton type="button" label="Update Project"
+              (click)="updateProject()"></button>
+    </div>
+  </div>
+</div>

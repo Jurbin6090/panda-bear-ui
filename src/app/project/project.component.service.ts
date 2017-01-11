@@ -5,14 +5,10 @@ import {Observable} from "rxjs/Rx";
 import {ObservableInput} from "rxjs/Observable";
 
 @Injectable()
-export class EmployeeComponentService {
-  deployments
-  employees
+export class ProjectComponentService {
 
   constructor(private http:Http) {
-    this.deployments = {}
-    this.deployments.current = []
-    this.deployments.previous = []
+
   }
 
   private handleError(error:any):Promise<any> {
@@ -20,11 +16,7 @@ export class EmployeeComponentService {
     return Promise.reject(error.message || error)
   }
 
-  getEmployees():Promise<Response> {
-    return this.http.get("http://localhost:8080/employee").toPromise()
-  }
-
-  getDeploymentsSummary(employeeId):Promise<Response> {
-    return this.http.get("http://localhost:8088/deployment/employee/" + employeeId).toPromise()
+  getProjects():Promise<Response> {
+    return this.http.get("http://localhost:8085/project").toPromise()
   }
 }

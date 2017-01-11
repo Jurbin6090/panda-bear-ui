@@ -1,0 +1,112 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="column col-md-3">
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="clientName">Name</label>
+          <br/>
+          <input id="clientName" style="width: 118px" type="text" pInputText [(ngModel)]="client.name"/>
+        </div>
+        <div style="padding:10px">
+          <label for="notes">Notes</label>
+          <br/>
+          <input id="notes" style="width: 93px" type="text" pInputText [(ngModel)]="client.notes"/>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="partnerName">Partner</label>
+          <br/>
+          <input id="partnerName" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.partner.name"/>
+        </div>
+        <div style="padding:10px">
+          <label for="partnerPercentage">MSP</label>
+          <br/>
+          <input id="partnerPercentage" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.partner.percentage"/>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="contactName">Contact Name</label>
+          <br/>
+          <input id="contactName" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.contact.name"/>
+        </div>
+        <div style="padding:10px">
+          <label for="contactEmail">Email</label>
+          <br/>
+          <input id="contactEmail" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.contact.email"/>
+        </div>
+        <div style="padding:10px">
+          <label for="contactPhone">Phone</label>
+          <br/>
+          <input id="contactPhone" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.contact.phone"/>
+        </div>
+      </div>
+      <div class="column col-md-3">
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="street1">Street 1</label>
+            <br/>
+            <input id="street1" style="width: 190px" type="text" pInputText [(ngModel)]="client.address.street1"/>
+          </div>
+          <div style="padding:10px">
+            <label for="street2">Street 2</label>
+            <br/>
+            <input id="street2" style="width: 190px" type="text" pInputText [(ngModel)]="client.address.street2"/>
+          </div>
+        </div>
+        <div class="row" style="display: flex;">
+          <div style="padding:10px">
+            <label for="city">City</label>
+            <br/>
+            <input id="city" style="width: 100px" type="text" pInputText [(ngModel)]="client.address.city"/>
+          </div>
+          <div style="padding:10px">
+            <label for="state">State</label>
+            <br/>
+            <input id="state" style="width: 100px" type="text" pInputText [(ngModel)]="client.address.state"/>
+          </div>
+          <div style="padding:10px">
+            <label for="zip">Zip Code</label>
+            <br/>
+            <input id="zip" style="width: 100px" type="text" pInputText [(ngModel)]="client.address.zip"/>
+          </div>
+          <div style="padding:10px">
+            <label for="country">Country</label>
+            <br/>
+            <input id="country" type="text" pInputText [(ngModel)]="client.address.country"/>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="contactName">Billing Cycle</label>
+          <br/>
+          <input id="contactName" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.cycle"/>
+        </div>
+        <div style="padding:10px">
+          <label for="contactEmail">Payment Terms</label>
+          <br/>
+          <input id="contactEmail" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.paymentTerms"/>
+        </div>
+        <div style="padding:10px">
+          <label for="contactPhone">Agency Fee</label>
+          <br/>
+          <input id="contactPhone" style="width: 118px" type="text" pInputText
+                 [(ngModel)]="client.billing.agencyFee"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button pButton type="button" label="Create Client"
+              (click)="createClient()"></button>
+    </div>
+  </div>
+</div>

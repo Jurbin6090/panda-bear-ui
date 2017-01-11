@@ -1,7 +1,22 @@
-<ul class="nav nav-pills nav-stacked">
-  <li>
-    <a routerLink="/">Home</a>
-    <a routerLink="/client">Client</a>
-    <a routerLink="/employee">Employee</a>
-  </li>
-</ul>
+<div id="mySidenav"
+     name="mySidenav"
+     class="sidenav sidenav-open" style="padding:10px 0px 0px 0px">
+  <div>
+    <ul style="list-style: none;">
+      <li>
+        <button routerLink="/" pButton type="button" label="Home"></button>
+        <button routerLink="/client" pButton type="button" label="Client"></button>
+        <button routerLink="/project" pButton type="button" label="Project"></button>
+        <button routerLink="/employee" pButton type="button" label="Employee"></button>
+      </li>
+    </ul>
+  </div>
+  <div style="margin-top: 100px;">
+    <ul style="list-style: none;">
+      <li>
+        <button routerLink="/create-client" pButton type="button" label="New Client"></button>
+        <button routerLink="/create-project" pButton type="button" label="New Project"></button>
+      </li>
+    </ul>
+  </div>
+</div>

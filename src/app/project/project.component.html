@@ -1,0 +1,94 @@
+<div class="data-container content">
+  <div class="datatable">
+    <p-dataTable [value]="projects"
+                 (onRowSelect)="onRowSelect($event)"
+                 [paginator]="true" expandableRows="true" [rows]="10"
+                 emptyMessage="Loading Projects..."
+                 [responsive]="true" [globalFilter]="gb" #dt>
+      <header>
+        <h3>Project List</h3>
+      </header>
+      <p-column expander="true" [style]="{'width':'38px'}"></p-column>
+      <p-column field="name" header="Project Name" [filter]="true"
+                filterPlaceholder="Search by Project Name" filterMatchMode="contains" [sortable]="true"></p-column>
+
+      <template let-project pTemplate="rowexpansion">
+        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+              <div class="column col-md-2">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-4 label">ID</div>
+                  <div class="ui-grid-col-6">{{project.id}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-4 label">Project Name</div>
+                  <div class="ui-grid-col-6">{{project.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-4 label">Work Order/PO #</div>
+                  <div class="ui-grid-col-6">{{project.workOrder}}</div>
+                </div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">Street 1</div>
+                <div class="ui-grid-col-6">{{project.address.street1}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">Street 2</div>
+                <div class="ui-grid-col-6">{{project.address.street2}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">City</div>
+                <div class="ui-grid-col-6">{{project.address.city}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">State</div>
+                <div class="ui-grid-col-6">{{project.address.state}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">Zip</div>
+                <div class="ui-grid-col-6">{{project.address.zip}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-4 label">Country</div>
+                <div class="ui-grid-col-6">{{project.address.country}}</div>
+              </div>
+            </div>
+            <div class="ui-grid-col-3">
+              <div class="column col-md-3">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Name</div>
+                  <div class="ui-grid-col-7">{{project.manager.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Phone</div>
+                  <div class="ui-grid-col-7">{{project.manager.phone}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Email</div>
+                  <div class="ui-grid-col-7">{{project.manager.email}}</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" pButton style="float:left" [routerLink]="['/update-project', project.id]"
+                      label="Update Project"></button>
+              <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(project)"-->
+                      <!--label="Project Employee List"></button>-->
+            </div>
+          </div>
+        </div>
+      </template>
+      <footer>
+        <div class="ui-helper-clearfix">
+          <button type="button" pButton icon="fa-plus" style="float:left; width: 170px;" [routerLink]="['/create-project']"
+                  label="Create Project"></button>
+          <button type="button" pButton icon="fa-file-o" style="float:left; width: 150px;" (click)="dt.exportCSV()"
+                  label="CSV"></button>
+
+        </div>
+      </footer>
+    </p-dataTable>
+  </div>
+</div>

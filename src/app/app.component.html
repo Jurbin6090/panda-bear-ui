@@ -1,19 +1,15 @@
-<header></header>
-
 <div class="container-fluid">
-
-  <div class="col-md-3">
-
-    <sidebar></sidebar>
-
+  <div class="row">
+    <header></header>
   </div>
 
-  <div class="col-md-9">
+  <div class="row">
+    <div class="column col-md-3">
+      <sidebar></sidebar>
+    </div>
 
-    <router-outlet></router-outlet>
-
+    <div class="column col-md-9">
+      <router-outlet style="z-index: 0"></router-outlet>
+    </div>
   </div>
-
 </div>
-
-

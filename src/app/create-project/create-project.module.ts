@@ -1,9 +1,7 @@
 import {NgModule}      from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms';
-import {ClientComponent} from './client.component';
-import {RouterModule} from "@angular/router";
-
+import {CreateProjectComponent} from './create-project.component';
 import {
   SharedModule,
   AccordionModule,
@@ -76,10 +74,9 @@ import {
 
 @NgModule({
   declarations: [
-    ClientComponent
+    CreateProjectComponent
   ],
   imports: [
-    RouterModule,
     BrowserModule,
     FormsModule,
     SharedModule,
@@ -150,9 +147,9 @@ import {
     TriStateCheckboxModule
   ],
   exports: [
-    ClientComponent
+    CreateProjectComponent
   ],
-  bootstrap: [ClientComponent]
+  bootstrap: [CreateProjectComponent]
 })
-export class ClientModule {
+export class CreateProjectModule {
 }

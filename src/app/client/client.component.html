@@ -1,3 +1,161 @@
-<p>
-  Client page
-</p>
+<div class="data-container content">
+  <div class="datatable">
+    <p-dataTable [value]="clients"
+                 (onRowSelect)="onRowSelect($event)"
+                 [paginator]="true" expandableRows="true" [rows]="10"
+                 emptyMessage="Loading Clients..."
+                 [responsive]="true" [globalFilter]="gb" #dt>
+      <header>
+        <h3>Client List</h3>
+      </header>
+      <p-column expander="true" [style]="{'width':'38px'}"></p-column>
+      <p-column field="name" header="Client Name" [filter]="true"
+                filterPlaceholder="Search by Client Name" filterMatchMode="contains" [sortable]="true"></p-column>
+
+      <template let-client pTemplate="rowexpansion">
+        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-4">
+              <div class="column col-md-2">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3 label">Client Name</div>
+                  <div class="ui-grid-col-6">{{client.name}}</div>
+                </div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Street 1</div>
+                <div class="ui-grid-col-6">{{client.address.street1}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Street 2</div>
+                <div class="ui-grid-col-6">{{client.address.street2}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">City</div>
+                <div class="ui-grid-col-6">{{client.address.city}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">State</div>
+                <div class="ui-grid-col-6">{{client.address.state}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Zip</div>
+                <div class="ui-grid-col-6">{{client.address.zip}}</div>
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-grid-col-3 label">Country</div>
+                <div class="ui-grid-col-6">{{client.address.country}}</div>
+              </div>
+            </div>
+            <div class="ui-grid-col-3">
+              <div class="column col-md-3">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Partner</div>
+                  <div class="ui-grid-col-7">{{client.billing.partner.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">MSP</div>
+                  <div class="ui-grid-col-7">{{client.billing.partner.percentage}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Billing Cycle</div>
+                  <div class="ui-grid-col-7">{{client.billing.cycle}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Payment Terms</div>
+                  <div class="ui-grid-col-7">{{client.billing.paymentTerms}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Agency Fee</div>
+                  <div class="ui-grid-col-7">{{client.billing.agencyFee}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="ui-grid-col-3">
+              <div class="column col-md-3">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Name</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Phone</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.phone}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Contact Email</div>
+                  <div class="ui-grid-col-7">{{client.billing.contact.email}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-5 label">Notes</div>
+                  <div class="ui-grid-col-7">{{client.notes}}</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" pButton style="float:left" [routerLink]="['/update-client', client.id]"
+                      label="Update Client"></button>
+              <!--<button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialog(client)"-->
+                      <!--label="Client Employee List"></button>-->
+            </div>
+          </div>
+        </div>
+      </template>
+      <footer>
+        <div class="ui-helper-clearfix">
+          <button type="button" pButton icon="fa-plus" style="float:left; width: 150px;" [routerLink]="['/create-client']"
+                  label="Create Client"></button>
+          <button type="button" pButton icon="fa-file-o" style="float:left; width: 150px;" (click)="dt.exportCSV()"
+                  label="CSV"></button>
+
+        </div>
+      </footer>
+    </p-dataTable>
+  </div>
+</div>
+
+
+<!--<div style="padding:10px">-->
+<!--<label for="id">Client Id</label>-->
+<!--<br/>-->
+<!--<input id="id" type="text" pInputText [(ngModel)]="client.id"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="name">ClientName</label>-->
+<!--<br/>-->
+<!--<input id="name" type="text" pInputText [(ngModel)]="client.name"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="column col-md-3">-->
+<!--<div style="padding:10px">-->
+<!--<label for="street1">Street 1</label>-->
+<!--<br/>-->
+<!--<input id="street1" type="text" pInputText [(ngModel)]="client.address.street1"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="street2">Street 2</label>-->
+<!--<br/>-->
+<!--<input id="street2" type="text" pInputText [(ngModel)]="client.address.street2"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="city">City</label>-->
+<!--<br/>-->
+<!--<input id="city" type="text" pInputText [(ngModel)]="client.address.city"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="state">State</label>-->
+<!--<br/>-->
+<!--<input id="state" type="text" pInputText [(ngModel)]="client.address.state"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="zip">Zip Code</label>-->
+<!--<br/>-->
+<!--<input id="zip" type="text" pInputText [(ngModel)]="client.address.zip"/>-->
+<!--</div>-->
+<!--<div style="padding:10px">-->
+<!--<label for="country">Country</label>-->
+<!--<br/>-->
+<!--<input id="country" type="text" pInputText [(ngModel)]="client.address.country"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
