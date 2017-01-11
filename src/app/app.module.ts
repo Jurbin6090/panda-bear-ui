@@ -45,7 +45,7 @@ import {
 
 import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 
-import {ClientComponentService} from "./client/service.component.service";
+import {ClientComponentService} from "./client/client.component.service";
 import {CreateClientComponentService} from "./create-client/create-client.component.service";
 import {DeploymentComponentService} from "./deployment/deployment.component.service";
 import {EmployeeComponentService} from "./employee/employee.component.service";
