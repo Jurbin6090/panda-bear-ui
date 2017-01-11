@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DeploymentComponentService} from "../../services/deployment.component.service";
+import {DeploymentComponentService} from "../deployment.component.service";
 import {SelectItem} from "primeng/primeng";
-import {ClientComponentService} from "../../services/client.component.service";
-import {ProjectComponentService} from "../../services/project.component.service";
+import {ClientComponentService} from "../../client/client.component.service";
+import {ProjectComponentService} from "../../project/project.component.service";
 
 @Component({
   selector: 'app-deployment',

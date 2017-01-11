@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from "primeng/primeng";
-import {ProjectComponentService} from "../../services/project.component.service";
-import {ClientComponentService} from "../../services/client.component.service";
+import {ProjectComponentService} from "../project.component.service";
+import {ClientComponentService} from "../../client/client.component.service";
 
 @Component({
   selector: 'app-create-project',

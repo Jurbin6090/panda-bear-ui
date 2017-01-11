@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {EmployeeComponentService} from "../../services/employee.component.service";
+import {EmployeeComponentService} from "../employee.component.service";
 import "rxjs/add/operator/map";
-import {DeploymentComponentService} from "../../services/deployment.component.service";
+import {DeploymentComponentService} from "../../deployment/deployment.component.service";
 
 @Component({
   selector: 'employee',
