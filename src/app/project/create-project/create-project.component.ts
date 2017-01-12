@@ -13,7 +13,10 @@ export class CreateProjectComponent implements OnInit {
   isClientSelected:boolean = false
 
   constructor(private projectComponentService:ProjectComponentService, private clientComponentService:ClientComponentService) {
-    this.project = {"address": {}, "manager": {}}
+    this.project = {
+      "address": {},
+      "manager": {}
+    }
   }
 
   ngOnInit() {

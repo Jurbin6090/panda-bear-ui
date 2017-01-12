@@ -76,7 +76,6 @@ export class CreateDeploymentComponent implements OnInit {
   }
 
   createDeployment() {
-    console.log("createDeployment method called")
 
     let deployment = Object.assign({}, this.deployment)
 
@@ -90,6 +89,5 @@ export class CreateDeploymentComponent implements OnInit {
         alert("Deployment Created")
       }
     )
-
   }
 }

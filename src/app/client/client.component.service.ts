@@ -14,19 +14,19 @@ export class ClientComponentService {
     return Promise.reject(error.message || error)
   }
 
-  getClients():any {
+  getClients():Promise<Response> {
     return this.http.get("http://localhost:8085/client/").toPromise()
   }
 
-  getClient(clientId) {
+  getClient(clientId):Promise<Response> {
     return this.http.get("http://localhost:8085/client/" + clientId).toPromise()
   }
 
-  createClient(client){
-    return this.http.post("http://localhost:8085/client",client).toPromise()
+  createClient(client):Promise<Response> {
+    return this.http.post("http://localhost:8085/client", client).toPromise()
   }
 
-  updateClient(client) {
+  updateClient(client):Promise<Response> {
     return this.http.patch("http://localhost:8085/client", client).toPromise()
   }
 }

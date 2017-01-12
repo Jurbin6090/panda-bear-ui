@@ -31,11 +31,11 @@ export class ClientComponent implements OnInit {
         if (a.name < b.name) {
           return -1;
         }
+
         if (a.name > b.name) {
           return 1;
         }
 
-        // names must be equal
         return 0;
       })
     })
