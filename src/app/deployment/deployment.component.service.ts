@@ -4,7 +4,6 @@ import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class DeploymentComponentService {
-  deployment
 
   constructor(private http:Http) {
   }
@@ -18,15 +17,15 @@ export class DeploymentComponentService {
     return this.http.get("http://localhost:8088/deployment/full/" + deploymentId).toPromise()
   }
 
-  getClients():Promise<Response> {
-    return this.http.get("http://localhost:8085/client/").toPromise()
-  }
-
-  getProjects(id):Promise<Response> {
-    return this.http.get("http://localhost:8085/project/findByClient/" + id).toPromise()
+  createDeployment(deployment):Promise<Response> {
+    return this.http.post("http://localhost:8088/deployment", deployment).toPromise()
   }
 
   updateDeployment(deployment):Promise<Response> {
     return this.http.patch("http://localhost:8088/deployment/" + deployment.id, deployment).toPromise()
+  }
+
+  getDeploymentsSummary(employeeId):Promise<Response> {
+    return this.http.get("http://localhost:8088/deployment/employee/" + employeeId).toPromise()
   }
 }

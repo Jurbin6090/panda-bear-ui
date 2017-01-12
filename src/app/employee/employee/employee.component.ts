@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {EmployeeComponentService} from "./employee.component.service";
+import {EmployeeComponentService} from "../employee.component.service";
 import "rxjs/add/operator/map";
+import {DeploymentComponentService} from "../../deployment/deployment.component.service";
 
 @Component({
   selector: 'employee',
@@ -14,7 +15,8 @@ export class EmployeeComponent implements OnInit {
   selectedEmployee
   display:boolean
 
-  constructor(private employeeComponentService:EmployeeComponentService) {
+  constructor(private employeeComponentService:EmployeeComponentService,
+              private deploymentComponentService:DeploymentComponentService) {
   }
 
   ngOnInit() {
@@ -75,7 +77,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   getDeploymentsSummary() {
-    this.employeeComponentService.getDeploymentsSummary(this.selectedEmployee.id).then(results => {
+    this.deploymentComponentService.getDeploymentsSummary(this.selectedEmployee.id).then(results => {
       let deployments = results.json()
 
       this.selectedEmployee.deployments = deployments

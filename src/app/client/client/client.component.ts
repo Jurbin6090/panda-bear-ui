@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientComponentService} from "./service.component.service";
+import {ClientComponentService} from "../client.component.service";
 
 @Component({
   selector: 'app-client',
@@ -31,11 +31,11 @@ export class ClientComponent implements OnInit {
         if (a.name < b.name) {
           return -1;
         }
+
         if (a.name > b.name) {
           return 1;
         }
 
-        // names must be equal
         return 0;
       })
     })
