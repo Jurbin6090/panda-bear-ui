@@ -15,18 +15,18 @@ export class ClientComponentService {
   }
 
   getClients():Promise<Response> {
-    return this.http.get("http://localhost:8085/client/").toPromise()
+    return this.http.get("/api/client/").toPromise()
   }
 
   getClient(clientId):Promise<Response> {
-    return this.http.get("http://localhost:8085/client/" + clientId).toPromise()
+    return this.http.get("/api/client/" + clientId).toPromise()
   }
 
   createClient(client):Promise<Response> {
-    return this.http.post("http://localhost:8085/client", client).toPromise()
+    return this.http.post("/api/client", client).toPromise()
   }
 
   updateClient(client):Promise<Response> {
-    return this.http.patch("http://localhost:8085/client", client).toPromise()
+    return this.http.patch("/api/client", client).toPromise()
   }
 }

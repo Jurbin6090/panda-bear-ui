@@ -13,6 +13,6 @@ export class EmployeeComponentService {
   }
 
   getEmployees():Promise<Response> {
-    return this.http.get("http://localhost:8080/employee").toPromise()
+    return this.http.get("/api/employee").toPromise()
   }
 }
