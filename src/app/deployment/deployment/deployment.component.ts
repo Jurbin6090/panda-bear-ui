@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DeploymentComponentService} from "./deployment.component.service";
+import {DeploymentComponentService} from "../deployment.component.service";
 import {SelectItem} from "primeng/primeng";
+import {ClientComponentService} from "../../client/client.component.service";
+import {ProjectComponentService} from "../../project/project.component.service";
 
 @Component({
   selector: 'app-deployment',
@@ -15,10 +17,12 @@ export class DeploymentComponent implements OnInit {
   cycles:SelectItem[]
   isBillable:boolean = false
 
-  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService,
+              private clientComponentService:ClientComponentService,
+              private projectComponentService:ProjectComponentService) {
     this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 1}]
 
-    this.deploymentComponentService.getClients().then(results => {
+    this.clientComponentService.getClients().then(results => {
       this.clients = []
 
       results.json().forEach(client => {
@@ -49,7 +53,7 @@ export class DeploymentComponent implements OnInit {
   }
 
   setProjectSelected() {
-    this.deploymentComponentService.getProjects(this.full.client.id).then(results => {
+    this.projectComponentService.getProjectsByClient(this.full.client.id).then(results => {
       this.projects = []
 
       this.projects.push({label: "Select a Project", value: ""})
@@ -73,11 +77,11 @@ export class DeploymentComponent implements OnInit {
       if (this.full.deployment.dates.endDate)
         this.full.deployment.dates.endDate = new Date(this.full.deployment.dates.endDate)
 
-      if(this.full.deployment.billing){
-          this.isBillable = true
+      if (this.full.deployment.billing) {
+        this.isBillable = true
       }
     }).then(()=>
-      this.deploymentComponentService.getProjects(this.full.client.id).then(results => {
+      this.projectComponentService.getProjectsByClient(this.full.client.id).then(results => {
         this.projects = []
 
         results.json().forEach(project => {
@@ -87,7 +91,7 @@ export class DeploymentComponent implements OnInit {
     )
   }
 
-  updateDeployment(){
+  updateDeployment() {
     if (!this.isBillable) {
       this.full.deployment.billing = null
     }

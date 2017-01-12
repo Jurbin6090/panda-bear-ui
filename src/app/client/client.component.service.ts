@@ -3,7 +3,8 @@ import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
-export class CreateProjectComponentService {
+export class ClientComponentService {
+  clients
 
   constructor(private http:Http) {
   }
@@ -17,7 +18,15 @@ export class CreateProjectComponentService {
     return this.http.get("http://localhost:8085/client/").toPromise()
   }
 
-  createProject(project){
-    return this.http.post("http://localhost:8085/project",project).toPromise()
+  getClient(clientId):Promise<Response> {
+    return this.http.get("http://localhost:8085/client/" + clientId).toPromise()
+  }
+
+  createClient(client):Promise<Response> {
+    return this.http.post("http://localhost:8085/client", client).toPromise()
+  }
+
+  updateClient(client):Promise<Response> {
+    return this.http.patch("http://localhost:8085/client", client).toPromise()
   }
 }

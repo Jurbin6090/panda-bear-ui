@@ -10,31 +10,45 @@ import {HeaderComponent, SidebarComponent} from './core-components/core-componen
 import {HttpModule} from '@angular/http';
 
 // Imported Modules
-import {ClientModule} from './client/client.module';
-import {CreateClientModule} from './create-client/create-client.module';
-import {UpdateClientModule} from './update-client/update-client.module';
-import {CreateDeploymentModule} from './create-deployment/create-deployment.module';
-import {CreateProjectModule} from './create-project/create-project.module';
-import {UpdateProjectModule} from './update-project/update-project.module';
-import {DeploymentModule} from './deployment/deployment.module';
-import {EmployeeModule} from './employee/employee.module';
-import {ProjectModule} from './project/project.module';
 import {HomeModule} from './home/home.module';
-import {ButtonModule} from 'primeng/primeng';
+import {FormsModule}   from '@angular/forms';
 
 // Route Components
-import {ClientComponent} from './client/client.component';
-import {CreateClientComponent} from './create-client/create-client.component';
-import {CreateDeploymentComponent} from './create-deployment/create-deployment.component'
-import {CreateProjectComponent} from './create-project/create-project.component';
-import {DeploymentComponent} from './deployment/deployment.component';
-import {EmployeeComponent} from './employee/employee.component';
+import {ClientComponent} from './client/client/client.component';
+import {CreateClientComponent} from './client/create-client/create-client.component';
+import {CreateDeploymentComponent} from './deployment/create-deployment/create-deployment.component'
+import {CreateProjectComponent} from './project/create-project/create-project.component';
+import {DeploymentComponent} from './deployment/deployment/deployment.component';
+import {EmployeeComponent} from './employee/employee/employee.component';
 import {HomeComponent} from './home/home.component';
-import '@angular/material/core/theming/prebuilt/indigo-pink.css';
-import { ProjectComponent } from './project/project.component';
-import { UpdateClientComponent } from './update-client/update-client.component';
-import { UpdateProjectComponent } from './update-project/update-project.component';
+import {ProjectComponent} from './project/project/project.component';
+import {UpdateClientComponent} from './client/update-client/update-client.component';
+import {UpdateProjectComponent} from './project/update-project/update-project.component';
 
+//Imported primeng Modules
+import {
+  SharedModule,
+  ButtonModule,
+  CalendarModule,
+  ConfirmDialogModule,
+  DataTableModule,
+  DialogModule,
+  DropdownModule,
+  InputTextModule,
+  InputTextareaModule,
+  ListboxModule,
+  PaginatorModule,
+  PasswordModule,
+  RadioButtonModule,
+  TriStateCheckboxModule, CheckboxModule
+} from 'primeng/primeng';
+
+import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+
+import {ClientComponentService} from "./client/client.component.service";
+import {DeploymentComponentService} from "./deployment/deployment.component.service";
+import {EmployeeComponentService} from "./employee/employee.component.service";
+import {ProjectComponentService} from "./project/project.component.service";
 
 const appRoutes:Routes = [
   {
@@ -54,7 +68,7 @@ const appRoutes:Routes = [
     component: UpdateClientComponent
   },
   {
-    path: 'update-project/',
+    path: 'update-project/:projectId',
     component: UpdateProjectComponent
   },
   {
@@ -81,27 +95,57 @@ const appRoutes:Routes = [
 
 @NgModule({
   imports: [
+    RouterModule,
+    BrowserModule,
+    FormsModule,
+    SharedModule,
+    ButtonModule,
+    CalendarModule,
+    CheckboxModule,
+    DataTableModule,
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    ListboxModule,
+    PaginatorModule,
+    PasswordModule,
+    RadioButtonModule,
+    TriStateCheckboxModule,
     BrowserModule,
     HttpModule,
-    ClientModule,
-    CreateClientModule,
-    UpdateClientModule,
-    CreateDeploymentModule,
-    CreateProjectModule,
-    UpdateProjectModule,
-    DeploymentModule,
-    EmployeeModule,
-    ProjectModule,
     HomeModule,
     ButtonModule,
     RouterModule.forRoot(appRoutes)
   ],
+  exports: [
+    ClientComponent,
+    CreateClientComponent,
+    CreateDeploymentComponent,
+    CreateProjectComponent,
+    DeploymentComponent,
+    EmployeeComponent,
+    ProjectComponent,
+    UpdateClientComponent,
+    UpdateProjectComponent
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ClientComponent,
+    CreateClientComponent,
+    CreateDeploymentComponent,
+    CreateProjectComponent,
+    DeploymentComponent,
+    EmployeeComponent,
+    ProjectComponent,
+    UpdateClientComponent,
+    UpdateProjectComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ClientComponentService, DeploymentComponentService, EmployeeComponentService, ProjectComponentService]
 })
 export class AppModule {
 }

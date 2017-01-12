@@ -1,12 +1,14 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {CreateDeploymentComponentService} from "./create-deployment.component.service";
 import {SelectItem} from "primeng/primeng";
+import {DeploymentComponentService} from "../deployment.component.service";
+import {ClientComponentService} from "../../client/client.component.service";
+import {ProjectComponentService} from "../../project/project.component.service";
 
 @Component({
   selector: 'app-create-deployment',
   templateUrl: './create-deployment.component.html',
-  providers: [CreateDeploymentComponentService]
+  providers: [DeploymentComponentService]
 })
 export class CreateDeploymentComponent implements OnInit {
   deployment
@@ -19,7 +21,9 @@ export class CreateDeploymentComponent implements OnInit {
   isProjectSelected:boolean = false
 
 
-  constructor(private activatedRoute:ActivatedRoute, private createDeploymentComponentService:CreateDeploymentComponentService) {
+  constructor(private activatedRoute:ActivatedRoute, private deploymentComponentService:DeploymentComponentService,
+              private clientComponentService:ClientComponentService,
+              private projectComponentService:ProjectComponentService) {
     this.deployment = {"dates": {}, "billing": {}, "contact": {"address": {}}}
   }
 
@@ -28,7 +32,7 @@ export class CreateDeploymentComponent implements OnInit {
     this.cycles = [{label: "NET30", value: 0}, {label: "NET45", value: 1}]
     this.projects = [{label: "Select a client", value: ""}]
 
-    this.createDeploymentComponentService.getClients().then(results => {
+    this.clientComponentService.getClients().then(results => {
       this.clients = []
       this.clients.push({label: "Select a client", value: ""})
 
@@ -49,13 +53,10 @@ export class CreateDeploymentComponent implements OnInit {
       this.clients.splice(0, 1)
     }
 
-    this.createDeploymentComponentService.getProjects(this.deployment.clientId).then(results => {
+    this.projectComponentService.getProjectsByClient(this.deployment.clientId).then(results => {
       this.projects = []
 
       this.projects.push({label: "Select a project", value: ""})
-
-      console.log('Results: ')
-      console.dir(results.json())
 
       results.json().forEach(project => {
         this.projects.push({label: project.name, value: project.id})
@@ -75,17 +76,18 @@ export class CreateDeploymentComponent implements OnInit {
   }
 
   createDeployment() {
+
     let deployment = Object.assign({}, this.deployment)
 
     if (!this.isBillable) {
       deployment.billing = null
+    } else if (!deployment.billing.cycle) {
+      deployment.billing.cycle = this.cycles[0].value
     }
 
-    this.createDeploymentComponentService.createDeployment(deployment).then(result => {
-        console.dir(result.json())
-        alert("Employee Created")
+    this.deploymentComponentService.createDeployment(deployment).then(result => {
+        alert("Deployment Created")
       }
     )
-
   }
 }
