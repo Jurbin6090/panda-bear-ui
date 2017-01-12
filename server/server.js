@@ -5,17 +5,39 @@ const http = require('http');
 const request = require('request');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const passport = require('passport')
+const BamboohrStrategy = require('passport-bamboohr').Strategy
 
 const app = express();
 
 const staticRoot = path.join(__dirname, '/../dist')
 
+
+
+
+
+
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+//TODO: Get api key and test this
+app.use(passport.initialize());passport.use(new BamboohrStrategy({
+    apiKey: ""
+  },
+  (username, done) => {
+    //TODO: Look up roles here
+
+    console.log("Authenticated user: ", username)
+
+    done(null, {})
+  }
+));
+app.use(passport.session());
+
+//TODO: Use auth when we have the api key
+const auth = passport.authenticate('bamboohr')
+
 
 // Set our api routes
 app.use('/api/employee/', (req, res) => {
@@ -23,7 +45,7 @@ app.use('/api/employee/', (req, res) => {
   req.pipe(request(url)).pipe(res);
 });
 
-app.use('/api/deployment/', (req, res) => {
+app.use('/api/deployment/',(req, res) => {
   const url = 'http://localhost:8088/deployment' + req.url;
   req.pipe(request(url)).pipe(res);
 });
