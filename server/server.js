@@ -6,24 +6,32 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const passport = require('passport')
+const proxy = require('express-http-proxy')
 const BamboohrStrategy = require('passport-bamboohr').Strategy
+const urlParser = require('url')
 
 const app = express();
 
 const staticRoot = path.join(__dirname, '/../dist')
 
 
-
-
-
+//If something happens, log an error before we crash.
+process.on('uncaughtException', function(err){
+  console.error('uncaughtException: ' + err.message);
+  console.error(err.stack);
+  process.exit(1);
+});
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //TODO: Get api key and test this
-app.use(passport.initialize());passport.use(new BamboohrStrategy({
-    apiKey: ""
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new BamboohrStrategy({
+    apiKey: "ApiKeyGoesHere"
   },
   (username, done) => {
     //TODO: Look up roles here
@@ -33,32 +41,39 @@ app.use(passport.initialize());passport.use(new BamboohrStrategy({
     done(null, {})
   }
 ));
-app.use(passport.session());
 
 //TODO: Use auth when we have the api key
 const auth = passport.authenticate('bamboohr')
 
+const env = process.env.NODE_ENV || 'dev';
+const prod = env === 'production'
+
+console.log('Env: ', env, ' Is prod: ', prod)
 
 // Set our api routes
-app.use('/api/employee/', (req, res) => {
-  const url = 'http://localhost:8080/employee' + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+app.use('/api/employee/', proxy(prod ? 'panda-bear:8080' : 'localhost:8080', {
+  forwardPath: function(req, res) {
+    return '/employee' + urlParser.parse(req.url).path;
+  }
+}));
 
-app.use('/api/deployment/',(req, res) => {
-  const url = 'http://localhost:8088/deployment' + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+app.use('/api/deployment/',  proxy(prod ? 'polar-bear:8088' : 'localhost:8088', {
+  forwardPath: function(req, res) {
+    return '/deployment' + urlParser.parse(req.url).path;
+  }
+}));
 
-app.use('/api/project/', (req, res) => {
-  const url = 'http://localhost:8085/project' + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+app.use('/api/project/', proxy(prod ? 'grizzly-bear:8085' : 'localhost:8085', {
+  forwardPath: function(req, res) {
+    return '/project' + urlParser.parse(req.url).path;
+  }
+}));
 
-app.use('/api/client/', (req, res) => {
-  const url = 'http://localhost:8085/client' + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+app.use('/api/client/', proxy(prod ? 'grizzly-bear:8085' : 'localhost:8085', {
+  forwardPath: function(req, res) {
+    return '/client' + urlParser.parse(req.url).path;
+  }
+}));
 
 
 app.use(express.static(staticRoot));
