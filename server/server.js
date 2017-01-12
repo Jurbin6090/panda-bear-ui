@@ -4,8 +4,11 @@ const path = require('path');
 const http = require('http');
 const request = require('request');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
+
+const staticRoot = path.join(__dirname, '/../dist')
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -16,12 +19,43 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
 app.use('/api/employee/', (req, res) => {
-  console.log('Url: ', req.url)
   const url = 'http://localhost:8080/employee' + req.url;
   req.pipe(request(url)).pipe(res);
 });
 
-app.use(express.static(path.join(__dirname, '/../dist')));
+app.use('/api/deployment/', (req, res) => {
+  const url = 'http://localhost:8088/deployment' + req.url;
+  req.pipe(request(url)).pipe(res);
+});
+
+app.use('/api/project/', (req, res) => {
+  const url = 'http://localhost:8085/project' + req.url;
+  req.pipe(request(url)).pipe(res);
+});
+
+app.use('/api/client/', (req, res) => {
+  const url = 'http://localhost:8085/client' + req.url;
+  req.pipe(request(url)).pipe(res);
+});
+
+
+app.use(express.static(staticRoot));
+
+app.use(function(req, res, next){
+  // if the request is not html then move along
+  const accept = req.accepts('html', 'json', 'xml');
+  if(accept !== 'html'){
+    return next();
+  }
+
+  // if the request has a '.' assume that it's for a file, move along
+  const ext = path.extname(req.path);
+  if (ext !== ''){
+    return next();
+  }
+  fs.createReadStream(staticRoot + '/index.html').pipe(res);
+});
+
 
 /**
  * Get port from environment and store in Express.

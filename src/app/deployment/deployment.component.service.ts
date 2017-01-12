@@ -14,18 +14,18 @@ export class DeploymentComponentService {
   }
 
   getDeployment(deploymentId):Promise<Response> {
-    return this.http.get("http://localhost:8088/deployment/full/" + deploymentId).toPromise()
+    return this.http.get("/api/deployment/full/" + deploymentId).toPromise()
   }
 
   createDeployment(deployment):Promise<Response> {
-    return this.http.post("http://localhost:8088/deployment", deployment).toPromise()
+    return this.http.post("/api/deployment", deployment).toPromise()
   }
 
   updateDeployment(deployment):Promise<Response> {
-    return this.http.patch("http://localhost:8088/deployment/" + deployment.id, deployment).toPromise()
+    return this.http.patch("/api/deployment/" + deployment.id, deployment).toPromise()
   }
 
   getDeploymentsSummary(employeeId):Promise<Response> {
-    return this.http.get("http://localhost:8088/deployment/employee/" + employeeId).toPromise()
+    return this.http.get("/api/deployment/employee/" + employeeId).toPromise()
   }
 }

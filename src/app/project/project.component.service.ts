@@ -15,22 +15,22 @@ export class ProjectComponentService {
   }
 
   getProjects():Promise<Response> {
-    return this.http.get("http://localhost:8085/project").toPromise()
+    return this.http.get("/api/project").toPromise()
   }
 
   getProjectsByClient(id):Promise<Response> {
-    return this.http.get("http://localhost:8085/project/findByClient/" + id).toPromise()
+    return this.http.get("/api/project/findByClient/" + id).toPromise()
   }
 
   createProject(project):Promise<Response> {
-    return this.http.post("http://localhost:8085/project", project).toPromise()
+    return this.http.post("/api/project", project).toPromise()
   }
 
   updateProject(project):Promise<Response> {
-    return this.http.patch("http://localhost:8085/project", project).toPromise()
+    return this.http.patch("/api/project", project).toPromise()
   }
 
   getProject(projectId):Promise<Response> {
-    return this.http.get("http://localhost:8085/project/" + projectId).toPromise()
+    return this.http.get("/api/project/" + projectId).toPromise()
   }
 }
