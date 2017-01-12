@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="column col-md-3">
+      <div class="row" style="display: flex;">
+        <div style="padding:10px">
+          <label for="email">Email</label>
+          <br/>
+          <input id="email" style="width: 118px" type="text" pInputText [(ngModel)]="loginInfo.email"/>
+        </div>
+        <div style="padding:10px">
+          <label for="password">Password</label>
+          <br/>
+          <input id="password" style="width: 93px" type="password" pInputText [(ngModel)]="loginInfo.password"/>
+        </div>
+        <div>
+          <button pButton type="button" label="Login"
+                  (click)="login()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
